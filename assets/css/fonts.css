@@ -1,0 +1,24 @@
+/* Importando la fuente Lora */
+@font-face {
+    font-family: 'Lora';
+    src: url('../fonts/Lora-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Raleway';
+    src: url('../fonts/Raleway-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+
+
+/* Definiendo las fuentes para los elementos */
+body, p, a, li, input, textarea {
+    font-family: 'Raleway', sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Lora', serif;
+}
