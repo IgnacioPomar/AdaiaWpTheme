@@ -1,4 +1,6 @@
 <?php
+setlocale (LC_ALL, 'es_ES.utf8');
+
 get_header ();
 
 
@@ -14,12 +16,14 @@ function showSubpages ($parent)
 		foreach ($subpages as $subpage)
 		{
 			// sp comes from Sub Page
-			$spId = strtolower (str_replace (' ', '_', $subpage->post_title));
+			$spId = strtolower (iconv ('UTF-8', 'ASCII//TRANSLIT//IGNORE', (str_replace (' ', '_', $subpage->post_title))));
+			// $spId = strtolower (str_replace (' ', '_', $subpage->post_title));
 			$spClass = basename (get_page_template_slug ($subpage->ID), '.php') ?? 'default';
 			$spClass = strtolower (str_replace (' ', '_', $spClass));
 
 			if (CFS ()->get ('showsubpages', $subpage->ID) === 1)
 			{
+				echo $subpage->ID . '<hr />';
 				showSubpages ($subpage->ID);
 			}
 			else
@@ -28,20 +32,6 @@ function showSubpages ($parent)
 				echo "<div class=\"content $spClass\" id=\"$spId\">" . apply_filters ('the_content', $subpage->post_content) . '</div>';
 				// echo '<p><strong>' . esc_html ('ShowSubpages') . ':</strong> ' . esc_html (CFS ()->get ('showsubpages', $subpage->ID)) . '</p>';
 			}
-
-			/*
-			 * $subpage_attributes = get_object_vars ($subpage);
-			 * // Mostrar todos los atributos de la subpágina
-			 * echo '<div class="attributes">';
-			 * foreach ($subpage_attributes as $attribute_name => $attribute_value)
-			 * {
-			 * echo '<p><strong>' . esc_html ($attribute_name) . ':</strong> ' . esc_html ($attribute_value) . '</p>';
-			 * }
-			 */
-			/*
-			 * echo '<p><strong>Template:</strong> ' . esc_html (get_page_template_slug ($subpage->ID)) . '</p>';
-			 * echo '<p><strong>' . esc_html ('prueba') . ':</strong> ' . esc_html (CFS ()->get ('prueba', $subpage->ID)) . '</p>';
-			 */
 		}
 		echo '</div>';
 	}
