@@ -4,11 +4,9 @@ setlocale (LC_ALL, 'es_ES.utf8');
 get_header ();
 
 
-function showSubpages ($parent)
+function showSubpages (&$subpages)
 {
-	// Obtener las subpáginas de la página actual
-	// $subpages = get_pages (array ('child_of' => 46, 'sort_column' => 'menu_order'));
-	$subpages = get_pages (array ('parent' => $parent, 'sort_column' => 'menu_order'));
+	
 
 	if ($subpages)
 	{
@@ -21,23 +19,36 @@ function showSubpages ($parent)
 			$spClass = basename (get_page_template_slug ($subpage->ID), '.php') ?? 'default';
 			$spClass = strtolower (str_replace (' ', '_', $spClass));
 
-			if (CFS ()->get ('showsubpages', $subpage->ID) === 1)
+			
+			
+			//Show the current page
+			echo "<h2 class=\"content $spClass\" id=\"$spId\">" . esc_html ($subpage->post_title) . '</h2>';
+			echo "<div class=\"content $spClass\" id=\"$spId\">" . apply_filters ('the_content', $subpage->post_content) . '</div>';
+			
+			
+			//show the children if any
+			$subSubpages = get_pages (array ('parent' => $subpage->ID, 'sort_column' => 'menu_order'));
+			if ($subSubpages)
 			{
-				echo $subpage->ID . '<hr />';
-				showSubpages ($subpage->ID);
+			    echo "<hr />";
+			    showSubpages ($subpages);
+			    echo "<hr />";
 			}
-			else
-			{
-				echo "<h2 class=\"content $spClass\" id=\"$spId\">" . esc_html ($subpage->post_title) . '</h2>';
-				echo "<div class=\"content $spClass\" id=\"$spId\">" . apply_filters ('the_content', $subpage->post_content) . '</div>';
-				// echo '<p><strong>' . esc_html ('ShowSubpages') . ':</strong> ' . esc_html (CFS ()->get ('showsubpages', $subpage->ID)) . '</p>';
-			}
+			
+				
+			
+			
 		}
 		echo '</div>';
 	}
 }
 
-showSubpages (get_post_parent ());
+
+// Obtener las subpáginas de la página actual
+// $subpages = get_pages (array ('child_of' => 46, 'sort_column' => 'menu_order'));
+$subpages = get_pages (array ('parent' => 0, 'sort_column' => 'menu_order'));
+
+showSubpages ($subpages);
 
 // get_sidebar();
 get_footer ();
