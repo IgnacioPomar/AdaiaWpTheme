@@ -7,7 +7,7 @@ add_theme_support ('post-thumbnails');
 
 
 function add_custom_templates($templates) {
-    $templates['template-contact-form.php'] = 'Formulario de contacto';
+    $templates['page-contact-form.php'] = 'Formulario de contacto';
     $templates['template-team.php'] = 'Miembro del equipo';
     return $templates;
 }

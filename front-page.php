@@ -6,38 +6,43 @@ get_header ();
 
 function showSubpages (&$subpages)
 {
-	
-
 	if ($subpages)
 	{
 		echo '<div class="subpages">';
 		foreach ($subpages as $subpage)
 		{
-		    //Skip the -1 pages: in this theme ar "independent pages"
-		    if ($subpage->menu_order < 0) continue;
-		    
-		    
-			// sp comes from Sub Page
-		    $spId =  $subpage->post_name;
-		    
-			//var_dump($subpage);
+			// Skip the -1 pages: in this theme ar "independent pages"
+			if ($subpage->menu_order > 100) continue;
 
-			
-			//Show the current page
-			echo "<div class=\"content\" id=\"$spId\">" . apply_filters ('the_content', $subpage->post_content) . '</div>';
-			
-			
-			//show the children if any
+			// sp comes from Sub Page
+			$spId = $subpage->post_name;
+
+			// Show the current page
+			$template_slug = get_page_template_slug ($subpage->ID);
+			if ($template_slug)
+			{
+				$template = locate_template ($template_slug);
+				if ($template)
+				{
+					$GLOBALS ['currentPage'] = &$subpage;
+					include ($template);
+				}
+			}
+			else
+			{
+				echo "<div class=\"content\" id=\"$spId\">" . apply_filters ('the_content', $subpage->post_content) . '</div>';
+			}
+
+			// show the children if any
 			$subSubpages = get_pages (array ('parent' => $subpage->ID, 'sort_column' => 'menu_order'));
 			if ($subSubpages)
 			{
-			    echo "<div class=\"$spId\">" . showSubpages ($subSubpages) . '</div>';
+				echo "<div class=\"$spId\">" . showSubpages ($subSubpages) . '</div>';
 			}
 		}
 		echo '</div>';
 	}
 }
-
 
 // Obtener las subpáginas de la página actual
 // $subpages = get_pages (array ('child_of' => 46, 'sort_column' => 'menu_order'));
