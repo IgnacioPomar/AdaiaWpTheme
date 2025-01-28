@@ -13,31 +13,26 @@ function showSubpages (&$subpages)
 		echo '<div class="subpages">';
 		foreach ($subpages as $subpage)
 		{
+		    //Skip the -1 pages: in this theme ar "independent pages"
+		    if ($subpage->menu_order < 0) continue;
+		    
+		    
 			// sp comes from Sub Page
-			$spId = strtolower (iconv ('UTF-8', 'ASCII//TRANSLIT//IGNORE', (str_replace (' ', '_', $subpage->post_title))));
-			// $spId = strtolower (str_replace (' ', '_', $subpage->post_title));
-			$spClass = basename (get_page_template_slug ($subpage->ID), '.php') ?? 'default';
-			$spClass = strtolower (str_replace (' ', '_', $spClass));
+		    $spId =  $subpage->post_name;
+		    
+			//var_dump($subpage);
 
 			
-			
 			//Show the current page
-			echo "<h2 class=\"content $spClass\" id=\"$spId\">" . esc_html ($subpage->post_title) . '</h2>';
-			echo "<div class=\"content $spClass\" id=\"$spId\">" . apply_filters ('the_content', $subpage->post_content) . '</div>';
+			echo "<div class=\"content\" id=\"$spId\">" . apply_filters ('the_content', $subpage->post_content) . '</div>';
 			
 			
 			//show the children if any
 			$subSubpages = get_pages (array ('parent' => $subpage->ID, 'sort_column' => 'menu_order'));
 			if ($subSubpages)
 			{
-			    echo "<hr />";
-			    showSubpages ($subpages);
-			    echo "<hr />";
+			    echo "<div class=\"$spId\">" . showSubpages ($subSubpages) . '</div>';
 			}
-			
-				
-			
-			
 		}
 		echo '</div>';
 	}
