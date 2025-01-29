@@ -8,8 +8,8 @@ function formatTeam ($id, $postTitle, $postName, $content)
 	$colegiada = get_post_meta ($id, 'Colegiada', true);
 
 	// Prepare the vars
-	$titulo = ($titulo) ? '<h4>' . esc_html ($titulo) . '</h4>' : '';
-	$colegiada = ($colegiada) ? '<h4>' . esc_html ($colegiada) . '</h4>' : '';
+	$titulo = ($titulo) ? esc_html ($titulo) : '';
+	$colegiada = ($colegiada) ? esc_html ($colegiada) : '';
 
 	echo '<div id="' . $postName . '" class="team-member">';
 
@@ -20,21 +20,23 @@ function formatTeam ($id, $postTitle, $postName, $content)
 		echo '<img class="team-info-image" src="' . $thumbnail_url . '" alt="' . $teamMemberName . '" scale="0" >';
 	}
 
+	$toggleId = 'toggleTeamInfo' . $postName;
+	echo '<input type="checkbox" id="' . $toggleId . '" />';
 	// team member sumary
 	{
-		echo '<div class="team-info-sumary">';
-		echo "<h3>$teamMemberName</h3>" . $titulo . $colegiada;
-		echo '</div>';
+		echo '<label for="' . $toggleId . '" class="team-info-sumary"><content>';
+		echo "<h3>$teamMemberName</h3><p>" . $titulo . '</p><p>' . $colegiada . '</p>';
+		echo '</content></label>';
 	}
 
 	// Team member description
 	{
-		echo '<div class="team-info-details">';
+		echo '<label for="' . $toggleId . '" class="team-info-details"><content>';
 
-		echo "<h3>$teamMemberName</h3>" . $titulo . $colegiada;
+		echo "<h3>$teamMemberName</h3><h4>" . $titulo . '</h4><h4>' . $colegiada . '</h4>';
 
 		echo apply_filters ('the_content', $content);
-		echo '</div>';
+		echo '</content></label>';
 	}
 
 	echo '</div>';

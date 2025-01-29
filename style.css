@@ -9,4 +9,145 @@
  * Requires at least: 6.5
  * Requires PHP:      8.1
  */
-/* Estilos generales */
+ 
+/* ------------------------------------------------- */
+/*       Fuentes (deben estar al principio)          */
+/* ------------------------------------------------- */
+
+/* @import must be at top of file, otherwise CSS will not work */
+
+@font-face {font-family: 'MuseoSansRounded-300';src: url('assets/fonts/295E4E_0_0.eot');src: url('assets/fonts/295E4E_0_0.eot?#iefix') format('embedded-opentype'),url('assets/fonts/295E4E_0_0.woff') format('woff'),url('assets/fonts/295E4E_0_0.ttf') format('truetype');}
+@font-face {font-family: 'MuseoSansRounded-500';src: url('assets/fonts/295E4E_1_0.eot');src: url('assets/fonts/295E4E_1_0.eot?#iefix') format('embedded-opentype'),url('assets/fonts/295E4E_1_0.woff') format('woff'),url('assets/fonts/295E4E_1_0.ttf') format('truetype');}
+@font-face {
+        font-family: 'icoadaia';
+        src:url('fonts/icoadaia.eot');
+        src:url('fonts/iocadaia.eot?#iefix') format('embedded-opentype'),
+                url('fonts/icoadaia.ttf') format('truetype'),
+                url('fonts/icoadaia.woff') format('woff'),
+                url('fonts/icoadaia.svg#icoadaia') format('svg');
+        font-weight: normal;
+        font-style: normal;
+}
+
+
+ 
+ 
+/* ------------------------------------------------- */
+/*              Estilos Generales                    */
+/* ------------------------------------------------- */
+
+
+html {
+    font-family: sans-serif;
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+    font-size: 62.5%;
+    -webkit-tap-highlight-color: transparent;
+}
+
+
+html, body {
+    height: 100%;
+    font-family: 'MuseoSansRounded-300', sans-serif;
+    font-size: 14px;
+    margin: 0px;
+}
+
+p {margin: 0 0 10px;}
+* {outline: none !important;}
+
+h3 {font-size: 24px;}
+
+h1, h2, h3 { margin-top: 20px;}
+h1, h2, h3, h4, h5 {
+    font-weight: 500;
+    line-height: 1.1;
+    color: inherit;
+}
+h1, h2, h3, h4, h5 {
+    font-family: 'MuseoSansRounded-500', "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+
+/* ------------------------------------------------- */
+/*           Estilos de muestro equipo               */
+/* ------------------------------------------------- */
+
+.subpages.nuestro-equipo {background-color: #FAF7F2;}
+
+img.team-info-image {
+	height: 558px;
+	width: auto;
+	padding-top: 30px;
+	display: block;
+}
+
+.team-member      {
+	position: relative;
+    display: inline-block;
+    color: #FFF;
+    width: 50%;
+    height: 588px;
+}
+.team-member input {display: none;}
+
+.team-member ul li {padding:0px;}
+
+
+.team-info-sumary, .team-info-details {
+	cursor: pointer;
+	/* transition: opacity 0.3s ease-in-out; */ 
+	background-color: #5d4469e6;
+	position: absolute;
+	bottom: 0;
+    left: 0;
+    width: 100%;
+    
+    
+    margin-top: 15px;
+    text-align: justify;
+}
+
+.team-member content {width: 460px;}
+
+.team-container .team-member:first-child img {
+    left: auto;
+    right: 0; /* Coloca la imagen a la derecha */
+}
+
+.team-info-sumary {	display: block;}
+.team-info-details { display: none; height: 100%; font-size: 14px;}
+
+/* Mostrar el segundo div y ocultar el primero cuando el input está checked */
+.team-member input:checked ~ .team-info-sumary  { display: none;  }
+.team-member input:checked ~ .team-info-details { display: block; }
+
+
+@media (min-width: 992px) {
+	/*img.team-info-image {}*/
+}
+
+
+@media (min-width: 768px) {
+	img.team-info-image {display: block; padding-top: 30px;}
+	
+	
+	
+	.subpages.nuestro-equipo .team-member img,
+	.subpages.nuestro-equipo .team-member content {float:left;}
+	
+	.subpages.nuestro-equipo .team-member:first-child img,
+	.subpages.nuestro-equipo .team-member:first-child content,
+	.subpages.nuestro-equipo .team-member:nth-child(2n+1)  img {float:right;}
+	
+	.team-info-sumary *, .team-info-details * {
+		padding-left: 40px;
+        padding-right: 40px;
+	}
+}
+
+@media (max-width: 991px) {
+    .team-member content {  width: 100%;}
+    .team-member      {  width: 100%;}
+    
+}

@@ -4,11 +4,11 @@ setlocale (LC_ALL, 'es_ES.utf8');
 get_header ();
 
 
-function showSubpages (&$subpages)
+function showSubpages (&$subpages, $class = "")
 {
 	if ($subpages)
 	{
-		echo '<div class="subpages">';
+		echo '<div class="subpages ' . $class . '">';
 		foreach ($subpages as $subpage)
 		{
 			// Skip the -1 pages: in this theme ar "independent pages"
@@ -37,7 +37,7 @@ function showSubpages (&$subpages)
 			$subSubpages = get_pages (array ('parent' => $subpage->ID, 'sort_column' => 'menu_order'));
 			if ($subSubpages)
 			{
-				echo "<div class=\"$spId\">" . showSubpages ($subSubpages) . '</div>';
+				showSubpages ($subSubpages, $spId);
 			}
 		}
 		echo '</div>';
