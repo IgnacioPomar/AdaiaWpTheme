@@ -30,7 +30,7 @@ function showSubpages (&$subpages, $class = "")
 			}
 			else
 			{
-				echo "<div class=\"content\" id=\"$spId\">" . apply_filters ('the_content', $subpage->post_content) . '</div>';
+				echo "<div class=\"container\" id=\"$spId\"><div class=\"content\">" . apply_filters ('the_content', $subpage->post_content) . '</div></div>';
 			}
 
 			// show the children if any
