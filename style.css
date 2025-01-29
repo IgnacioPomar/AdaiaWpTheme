@@ -51,10 +51,11 @@ html, body {
     font-family: 'MuseoSansRounded-300', sans-serif;
     font-size: 14px;
     margin: 0px;
+    background-color: #FAF7F2;
 }
 
 p {margin: 0 0 10px;}
-* {outline: none !important;}
+* {outline: none !important; box-sizing: border-box;}
 
 h3 {font-size: 24px;}
 
@@ -71,6 +72,102 @@ h1, h2, h3, h4, h5 {
 
 
 .content h1 {text-align: center; font-size: 25px;}
+
+
+.content {
+	width: 100%; 
+	padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+@media (min-width: 768px) {
+    .content { width: 750px; }
+}
+
+@media (min-width: 992px) {
+    .content { width: 970px; }
+}
+
+@media (min-width: 1200px) {
+    .content { width: 1170px; }
+}
+
+
+/* ------------------------------------------------- */
+/*              Estilos de Filosofía                 */
+/* ------------------------------------------------- */
+
+#filosofia {
+	background-color: #FAF7F2;
+    color: #5D4469;
+    padding-bottom: 50px;
+    padding-top: 50px;
+}
+
+
+#filosofia h1{
+	margin-bottom: 50px;
+}
+
+#filosofia li {width: 100%;}
+
+@media (min-width: 768px) {
+	#filosofia li {width: 49%;}
+}
+
+@media (min-width: 992px) {
+    #filosofia li {width: 24%;}
+}
+
+#filosofia li {
+    list-style: none;
+    display: inline-block;
+    text-align: justify;
+    vertical-align: top;
+    padding: 10px 10px;
+    box-sizing: border-box;
+    color: #8E8496;
+}
+
+#filosofia li:nth-child(1)::before {    content: "\e600";}
+#filosofia li:nth-child(2)::before {    content: "\e609";}
+#filosofia li:nth-child(3)::before {    content: "\e601";}
+#filosofia li:nth-child(4)::before {    content: "\e60a";}
+
+
+#filosofia li:before {
+    font-size: 65px;
+    display: block;
+    font-family: icoadaia;
+    font-style: normal;
+    font-weight: 400;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    text-align: center;
+    color: #5D4469;
+}
+  
+    
+
+#filosofia h1:before {
+    content: "\e604";
+    /* font-family: icoadaia; */
+    font-size: 70px;
+    display: block;
+    font-family: icoadaia;
+    font-style: normal;
+    font-weight: 400;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    margin-bottom: 15px;
+    -webkit-font-smoothing: antialiased;
+}
+
 
 /* ------------------------------------------------- */
 /*           Estilos de muestro equipo               */
