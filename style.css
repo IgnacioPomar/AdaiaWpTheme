@@ -96,6 +96,88 @@ h1, h2, h3, h4, h5 {
 
 
 /* ------------------------------------------------- */
+/*             Metodología de trabajo                */
+/* ------------------------------------------------- */
+#metodologia {
+	background-color: #FAF7F2;
+    color: #5D4469;
+    padding-bottom: 50px;
+    padding-top: 50px;
+}
+
+#metodologia h1{
+	margin-bottom: 50px;
+}
+
+#metodologia p {
+	color: #8E8496;
+    font-size: 16px;
+    margin: 20px 0px;
+    text-align: justify;
+}
+
+
+#metodologia h1:before {
+    content: "\e615";
+    /* font-family: icoadaia; */
+    font-size: 70px;
+    display: block;
+    font-family: icoadaia;
+    font-style: normal;
+    font-weight: 400;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    margin-bottom: 15px;
+    -webkit-font-smoothing: antialiased;
+}
+
+
+
+#metodologia li {width: 100%;}
+
+@media (min-width: 768px) {
+	#metodologia li {width: 49%;}
+}
+
+@media (min-width: 992px) {
+    #metodologia li {width: 24%;}
+}
+
+#metodologia li {
+    list-style: none;
+    display: inline-block;
+    text-align: justify;
+    vertical-align: top;
+    padding: 10px 10px;
+    box-sizing: border-box;
+    color: #8E8496;
+}
+
+#metodologia li:nth-child(1)::before {    content: "\e600";}
+#metodologia li:nth-child(2)::before {    content: "\e609";}
+#metodologia li:nth-child(3)::before {    content: "\e601";}
+#metodologia li:nth-child(4)::before {    content: "\e60a";}
+
+
+#metodologia li:before {
+    font-size: 65px;
+    display: block;
+    font-family: icoadaia;
+    font-style: normal;
+    font-weight: 400;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    text-align: center;
+    color: #5D4469;
+}
+
+#metodologia li strong {display:block;    text-align: center;}
+
+
+/* ------------------------------------------------- */
 /*              Estilos de Filosofía                 */
 /* ------------------------------------------------- */
 
