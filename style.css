@@ -144,6 +144,8 @@ a {color: #428bca;text-decoration: none;}
 
 #adaia blockquote { font-size: 85%;   margin: 40px 0px;}
 
+
+
 .featured-image {
     position: absolute;
     top: 0;
@@ -179,6 +181,8 @@ a {color: #428bca;text-decoration: none;}
 }
 
 
+
+
 @media (max-width: 991px) {
     #adaia .content .adaia-ct {
         width: 320px;
@@ -194,6 +198,7 @@ a {color: #428bca;text-decoration: none;}
     }
     
     #adaia .content {padding: 30px; width: 100%;margin: 0;}
+}
 
 
 
@@ -654,6 +659,7 @@ img.team-info-image {
 	
 	.subpages.nuestro-equipo .team-member:first-child img,
 	.subpages.nuestro-equipo .team-member:first-child content,
+	.subpages.nuestro-equipo .team-member:nth-child(2n+1) content,
 	.subpages.nuestro-equipo .team-member:nth-child(2n+1)  img {float:right;}
 	
 	.team-info-sumary *, .team-info-details * {
