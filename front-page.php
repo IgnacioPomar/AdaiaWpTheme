@@ -12,7 +12,7 @@ function showSubpages (&$subpages, $class = "")
 		foreach ($subpages as $subpage)
 		{
 			// Skip the -1 pages: in this theme ar "independent pages"
-			if ($subpage->menu_order > 100) continue;
+			if ($subpage->menu_order > 100 || $subpage->menu_order < 0) continue;
 
 			// sp comes from Sub Page
 			$spId = $subpage->post_name;
@@ -30,7 +30,17 @@ function showSubpages (&$subpages, $class = "")
 			}
 			else
 			{
-				echo "<div class=\"container\" id=\"$spId\"><div class=\"content\">" . apply_filters ('the_content', $subpage->post_content) . '</div></div>';
+				echo "<div class=\"container\" id=\"$spId\">";
+
+				// Si la subpágina tiene una imagen destacada, mostrarla
+				if (has_post_thumbnail ($subpage->ID))
+				{
+					echo '<div class="featured-image">' . get_the_post_thumbnail ($subpage->ID, 'full') . '</div>';
+				}
+
+				echo '<div class="content">';
+				echo apply_filters ('the_content', $subpage->post_content);
+				echo '</div></div>';
 			}
 
 			// show the children if any
