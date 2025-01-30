@@ -131,33 +131,43 @@ span.adaiaLogo:before {
 
 
 #menu-toggle {display:none;}
-label.mnuLbl {float: right;  font-size: 21px; color: #5f456b;}
-#brand {text-align: center;}
+label.mnuLbl {float: right; margin-right: 10px; font-size: 21px; color: #5f456b;}
+#brand {text-align: center; height: 28px;}
 
-#mnuContainer nav li a {
+#menu-toggle ~ nav { display: none; }
+#menu-toggle:checked ~ nav { display: block; }
+#mnuContainer ul {padding: 0px 20px; list-style-type: none; }
+#mnuContainer nav {text-align: left; padding-top: 5px;}
+#mnuContainer li a {
 	color: #5f456b;
-    font-size: 12px;
+    font-size: 16px;
     padding: 5px 5px;
-    text-transform:uppercase
+    text-transform:uppercase;
+    display: block;
 }
+#mnuContainer ul.leftMnu,
+#mnuContainer ul.rightMnu {margin-bottom:0px; margin-top:0px;}
 
-
-@media (min-width: 992px) {
-	#mnuContainer ul.rightMnu{float: right;}
-	#brand { position: absolute; left: 50%;   transform: translateX(-50%);}
-}
 
 
 @media (min-width: 768px) { 
 	label.mnuLbl {display:none;}
+	#mnuContainer li a { font-size: 12px;  }
 	#mnuContainer li {display: inline-block; padding: 0px 5px;}
-	#mnuContainer ul {display: inline-block;} 
+	#mnuContainer ul {display: inline-block; padding: 0px;} 
 	#mnuContainer nav {
         display: block;
         margin-left: auto;
         margin-right: auto;
+        text-align: center;
     }
 	
+}
+
+@media (min-width: 992px) {
+	#mnuContainer ul.rightMnu{float: right;}
+	#mnuContainer nav { text-align: left; min-height: 30px;}
+	#brand { position: absolute; left: 50%;   transform: translateX(-50%);}
 }
 
 
