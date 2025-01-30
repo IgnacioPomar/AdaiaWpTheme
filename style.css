@@ -72,7 +72,7 @@ h1, h2, h3, h4, h5 {
 
 a {color: #428bca;text-decoration: none;}
 
-.content h1 {text-align: center; font-size: 25px;}
+h1 {text-align: center; font-size: 25px;}
 
 
 .content {
@@ -118,6 +118,52 @@ a {color: #428bca;text-decoration: none;}
 /*                      Header                       */
 /* ------------------------------------------------- */
 
+
+span.adaiaLogo:before {
+    content: "\e618";
+    line-height: 30px;
+    font-size: 132px;
+    color: #5f456b;
+    font-family: icoadaia;
+}
+
+#mnuBg {background-color:#FFF;padding-top: 5px;}
+
+
+#menu-toggle {display:none;}
+label.mnuLbl {float: right;  font-size: 21px; color: #5f456b;}
+#brand {text-align: center;}
+
+#mnuContainer nav li a {
+	color: #5f456b;
+    font-size: 12px;
+    padding: 5px 5px;
+    text-transform:uppercase
+}
+
+
+@media (min-width: 992px) {
+	#mnuContainer ul.rightMnu{float: right;}
+	#brand { position: absolute; left: 50%;   transform: translateX(-50%);}
+}
+
+
+@media (min-width: 768px) { 
+	label.mnuLbl {display:none;}
+	#mnuContainer li {display: inline-block; padding: 0px 5px;}
+	#mnuContainer ul {display: inline-block;} 
+	#mnuContainer nav {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
+	
+}
+
+
+@media (min-width: 1200px) { 
+	#mnuContainer nav {width:1170px;} 
+}
 
 
 /* ------------------------------------------------- */
