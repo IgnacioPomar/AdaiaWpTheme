@@ -120,6 +120,93 @@ a {color: #428bca;text-decoration: none;}
 
 
 
+
+
+/* ------------------------------------------------- */
+/*          Áreas de contactar: formulario           */
+/* ------------------------------------------------- */
+
+
+
+
+/* ------------------------------------------------- */
+/*                Áreas de contactar                 */
+/* ------------------------------------------------- */
+
+#contacto {
+	background-color: #31C4C4;
+	color: white;
+	padding-bottom: 50px;
+    padding-top: 50px;
+    font-size: 0; /* Elimina el espacio en blanco entre elementos inline-block */
+}
+#contacto p,#contacto li {font-size: initial;}
+#contacto a {color: white; opacity: 0.8;}
+#contacto a:hover { opacity: 1;}
+#contacto li {list-style: none;}
+#contacto ul {padding: 0;}
+#contacto h3 {font-size: 18px;}
+#contacto h2 {text-align: center; font-size: 25px;}
+#contacto h2:before {
+    content: "\e60b";
+    /* font-family: icoadaia; */
+    font-size: 70px;
+    display: block;
+    font-family: icoadaia;
+    font-style: normal;
+    font-weight: 400;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    margin-bottom: 15px;
+    -webkit-font-smoothing: antialiased;
+}
+
+
+#contacto .col-cto {
+	display: inline-block; 
+	text-align: center;
+    vertical-align: top;
+    width: 100%; /* Por defecto en móviles */
+}
+#contacto .lnk-form {
+	display: inline-block; 
+	font-size: 18px;
+	font-family: 'MuseoSansRounded-500', "Helvetica Neue", Helvetica, Arial, sans-serif;
+	vertical-align: top;
+	
+	display: inline-block;
+    vertical-align: top;
+    
+    /* Estilos por defecto para moviles */
+    width: 100%; 
+    padding-top: 50px;
+    text-align: center;
+}
+#contacto .lnk-form a:after {
+	content: "\e611";
+	font-family: icoadaia;
+	font-size: 26px;
+    line-height: 20px;
+    vertical-align: middle;
+    margin-left: 5px;
+} 
+
+
+@media (min-width: 768px) {
+    #contacto .col-cto { width: 49%; text-align: left;}
+    #contacto .lnk-form {width: 49%; }
+    #contacto .lnk-form {padding: 10px;text-align: left;}
+}
+
+@media (min-width: 992px) {
+    #contacto .col-cto { width: 30%; text-align: left;}
+    #contacto .lnk-form {width: 68%; }
+    #contacto .lnk-form {padding: 50px;text-align: left;}
+}
+
+
+
 /* ------------------------------------------------- */
 /*              Áreas de intervención                */
 /* ------------------------------------------------- */
