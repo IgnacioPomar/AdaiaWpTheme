@@ -1,18 +1,28 @@
-<?php //get_template_part('templates/page', 'header'); ?>
+<?php
+header ("HTTP/1.1 404 Not Found");
+header ("Content-Type: text/html; charset=UTF-8");
+?>
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN">
+<html>
+<head>
+    <title>404 Not Found</title>
+</head>
+<body>
+    <h1>Not Found</h1>
+    <p>The requested URL <?php
 
+echo htmlspecialchars ($_SERVER ['REQUEST_URI']);
+				?> was not found on this server.</p>
+    <hr>
+    <address><?php
 
-<div class="not-found-content">
-	<?php 
-		$titulo = get_field("page_not_found_titulo", "options");
-		$texto 	= get_field("page_not_found_texto", "options"); 
-	?>
-    <span class="icon icon-error-01"></span>
-    <?php if ($titulo){ ?><h2><?=$titulo?></h2><?php } ?>
-    <?php if ($texto){ ?><p><?=$texto?></p><?php } ?>
-   
-</div> <!-- not-found-content -->
+echo $_SERVER ['SERVER_SOFTWARE'] ?? 'Apache';
+				?> Server at <?php
 
+echo $_SERVER ['SERVER_NAME'];
+				?> Port <?php
 
-
-<?php get_search_form(); ?>
-
+echo $_SERVER ['SERVER_PORT'];
+				?></address>
+</body>
+</html>
