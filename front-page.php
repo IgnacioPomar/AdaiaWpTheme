@@ -77,6 +77,27 @@ $themeBaseUri = get_template_directory_uri ();
 	</div>
 </section>
 
+ <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            let slides = document.querySelectorAll("#slider .slide");
+            let currentIndex = 0;
+            let totalSlides = slides.length;
+
+            function showSlide(index) {
+                slides.forEach(slide => slide.style.display = "none");
+                slides[index].style.display = "block";
+            }
+
+            function nextSlide() {
+                currentIndex = (currentIndex + 1) % totalSlides;
+                showSlide(currentIndex);
+            }
+
+            setInterval(nextSlide, 3000);
+            showSlide(currentIndex);
+        });
+    </script>
+
 
 <section id="acronyms">
     <div class="entry-content">

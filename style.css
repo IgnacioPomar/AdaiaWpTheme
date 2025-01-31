@@ -728,7 +728,7 @@ img.team-info-image {
 	position: relative;
     display: inline-block;
     color: #FFF;
-    width: 50%;
+    width: 100%;
     height: 588px;
 }
 .team-member input {display: none;}
@@ -750,7 +750,7 @@ img.team-info-image {
     text-align: justify;
 }
 
-.team-member content {width: 460px;}
+.team-member content {width: 100%;}
 
 .team-container .team-member:first-child img {
     left: auto;
@@ -764,9 +764,16 @@ img.team-info-image {
 .team-member input:checked ~ .team-info-sumary  { display: none;  }
 .team-member input:checked ~ .team-info-details { display: block; }
 
+.team-info-sumary > *, .team-info-details > * {
+		padding-left: 10px;
+        padding-right: 10px;
+	}
+
 
 @media (min-width: 992px) {
 	/*img.team-info-image {}*/
+	    .team-member content {  width: 500px;}
+    	.team-member      {  width: 50%;}
 }
 
 
@@ -789,8 +796,3 @@ img.team-info-image {
 	}
 }
 
-@media (max-width: 991px) {
-    .team-member content {  width: 100%;}
-    .team-member      {  width: 100%;}
-    
-}
