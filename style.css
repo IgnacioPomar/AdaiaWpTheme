@@ -175,6 +175,51 @@ label.mnuLbl {float: right; margin-right: 10px; font-size: 21px; color: #5f456b;
 	#mnuContainer nav {width:1170px;} 
 }
 
+/* ------------------------------------------------- */
+/*            Header: slider & acronyms              */
+/* ------------------------------------------------- */
+
+#acronyms {
+    background-color: #5d4469;
+    color: #C3BACC;
+}
+
+#acronyms .row {text-align: center; padding: 22px 0px;}
+#acronyms .acronym-content {display: inline-block; margin: 0px 3.5%;}
+
+#acronyms .icon {
+	color: #31C4C4;
+	font-family: icoadaia;
+    font-style: normal;
+    font-weight: 400;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    display: block;
+    
+    font-size: 50px; width: 50px;
+}
+
+.icon.adaia-a:before { content: "\e610"; }
+.icon.adaia-d:before { content: "\e607"; }
+.icon.adaia-i:before { content: "\e606"; }
+
+
+
+@media (min-width: 768px) {
+	#acronyms .row { padding: 50px 0px;}
+	#acronyms .acronym-content {margin: 0px 5%;}
+}
+
+@media (min-width: 992px) {
+    #acronyms .acronym-content {margin: 0px 5.5%;}
+}
+
+@media (min-width: 1200px) {
+	#acronyms .acronym-content {margin: 0px 72px;}
+	
+    
+}
 
 /* ------------------------------------------------- */
 /*                Adaia - presentación               */

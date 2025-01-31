@@ -1,7 +1,4 @@
 <?php
-setlocale (LC_ALL, 'es_ES.utf8');
-
-get_header ();
 
 
 function showSubpages (&$subpages, $class = "")
@@ -53,6 +50,44 @@ function showSubpages (&$subpages, $class = "")
 		echo '</div>';
 	}
 }
+
+setlocale (LC_ALL, 'es_ES.utf8');
+
+get_header ();
+?>
+
+<section id="acronyms">
+    <div class="entry-content">
+    <div class="row">
+    <div class="col-xs-12  row-content"> 
+    <div class="letter-group">
+    
+	      	<div class="acronym-content">
+        		<span class="icon adaia-a"></span>
+            	<span class="themeaning">Analiza</span>
+        	</div>
+		    <div class="acronym-content">
+        		<span class="icon adaia-d"></span>
+            	<span class="themeaning">Decide</span>
+        	</div>
+		    <div class="acronym-content">
+        		<span class="icon adaia-a"></span>
+            	<span class="themeaning">Actúa</span>
+        	</div>
+		    <div class="acronym-content">
+        		<span class="icon adaia-i"></span>
+            	<span class="themeaning">Integra</span>
+        	</div>
+		    <div class="acronym-content">
+        		<span class="icon adaia-a"></span>
+            	<span class="themeaning">Avanza</span>
+        	</div>
+		    
+    </div> <!-- .letter-group -->
+    </div></div></div>
+</section>
+
+<?php
 
 // Obtener las subpáginas de la página actual
 // $subpages = get_pages (array ('child_of' => 46, 'sort_column' => 'menu_order'));
