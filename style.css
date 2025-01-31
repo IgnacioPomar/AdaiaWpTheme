@@ -206,19 +206,39 @@ label.mnuLbl {float: right; margin-right: 10px; font-size: 21px; color: #5f456b;
 
 
 
+#slider img {object-fit: cover; height: calc(100vh - 35px); width: 100%; display: block;}
+#slider .slide {position: relative; width: 100%; display:none;}
+#slider #slide-0.slide {display:block;}
+
+#slider .slide .txt {
+  position: absolute;
+  bottom: 0px;
+  width: 100%; 
+  text-align: center; 
+  color: white;
+  text-transform: uppercase;
+  background-color: rgba(93, 68, 105, 0.9);
+  height: 10%;
+  
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 15px;
+}
+
 @media (min-width: 768px) {
 	#acronyms .row { padding: 50px 0px;}
 	#acronyms .acronym-content {margin: 0px 5%;}
+	#slider .slide .txt {height: 20%;}
 }
 
 @media (min-width: 992px) {
     #acronyms .acronym-content {margin: 0px 5.5%;}
+    #slider .slide .txt {font-size: 30px;}
 }
 
 @media (min-width: 1200px) {
 	#acronyms .acronym-content {margin: 0px 72px;}
-	
-    
 }
 
 /* ------------------------------------------------- */
@@ -763,7 +783,7 @@ img.team-info-image {
 	.subpages.nuestro-equipo .team-member:nth-child(2n+1) content,
 	.subpages.nuestro-equipo .team-member:nth-child(2n+1)  img {float:right;}
 	
-	.team-info-sumary *, .team-info-details * {
+	.team-info-sumary > *, .team-info-details > * {
 		padding-left: 40px;
         padding-right: 40px;
 	}

@@ -54,7 +54,29 @@ function showSubpages (&$subpages, $class = "")
 setlocale (LC_ALL, 'es_ES.utf8');
 
 get_header ();
+
+$themeBaseUri = get_template_directory_uri ();
+
 ?>
+<section id="slider">
+	<div id="slide-0" class="slide">
+		<img src="<?=$themeBaseUri?>/assets/img/sld01-sientes.jpg" >
+		<span class="txt">Comprende lo que sientes</span>
+	</div>
+	<div id="slide-1" class="slide">
+		<img src="<?=$themeBaseUri?>/assets/img/sld02-emocion.jpg" >
+		<span class="txt">Transmite emoción</span>
+	</div>
+	<div id="slide-2" class="slide">
+		<img src="<?=$themeBaseUri?>/assets/img/sld03-metas.jpg" >
+		<span class="txt">Realiza tus metas</span>
+	</div>
+	<div id="slide-3" class="slide">
+		<img src="<?=$themeBaseUri?>/assets/img/sld04-sonrie.jpg" >
+		<span class="txt">Sonríe</span>
+	</div>
+</section>
+
 
 <section id="acronyms">
     <div class="entry-content">
