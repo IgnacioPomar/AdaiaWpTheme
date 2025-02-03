@@ -1,0 +1,7 @@
+{
+	"name" : "adaiacontactform/adaiacontactform",
+	"require" : {
+		"phpmailer/phpmailer" : "~6.9",
+		"google/cloud-recaptcha-enterprise" : "~1.17"
+	}
+}
