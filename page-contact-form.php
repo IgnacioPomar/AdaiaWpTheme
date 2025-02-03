@@ -98,7 +98,7 @@ function saveToFile ($content)
  *        	El ID del proyecto de Google Cloud.
  * @param string $action
  *        	El nombre de la acción que corresponde al token.
- * @return score (float) o mensaje de error
+ * @return float with the spam score or mensaje de error
  */
 function checkRecaptcha ()
 {
@@ -304,8 +304,8 @@ if ($_SERVER ['REQUEST_METHOD'] === 'POST')
 		$body = '<table>';
 		$body .= '<tr><th>Centro</th><td>' . ADAIA_CENTRO . '</td></tr>';
 		$body .= '<tr><th>Nombre</th><td>' . $_POST ['adaiaName'] . '</td></tr>';
-		$body .= '<tr><th>Email</th><td>' . $_POST ['adaiaEmail'] . '</td></tr>';
 		$body .= '<tr><th>Mensaje</th><td>' . nl2br ($_POST ['adaiaMessage']) . '</td></tr>';
+		$body .= '<tr><th>Email</th><td>' . $_POST ['adaiaEmail'] . '</td></tr>';
 		$body .= '<tr><th>SPAM score</th><td>' . $score . '</td></tr>';
 		$body .= '</table>';
 
