@@ -122,7 +122,7 @@ h1 {text-align: center; font-size: 25px;}
 span.adaiaLogo:before {
     content: "\e618";
     line-height: 30px;
-    font-size: 132px;
+    font-size: 200px;
     color: #5f456b;
     font-family: icoadaia;
 }
@@ -132,7 +132,7 @@ span.adaiaLogo:before {
 
 #menu-toggle {display:none;}
 label.mnuLbl {float: right; margin-right: 10px; font-size: 21px; color: #5f456b;}
-#brand {text-align: center; height: 28px;}
+#brand {text-align: center; height: 40px; margin-top: 10px;}
 
 #menu-toggle ~ nav { display: none; }
 #menu-toggle:checked ~ nav { display: block; }
@@ -166,7 +166,7 @@ label.mnuLbl {float: right; margin-right: 10px; font-size: 21px; color: #5f456b;
 
 @media (min-width: 992px) {
 	#mnuContainer ul.rightMnu{float: right;}
-	#mnuContainer nav { text-align: left; min-height: 30px;}
+	#mnuContainer nav { text-align: left; min-height: 50px;}
 	#brand { position: absolute; left: 50%;   transform: translateX(-50%);}
 }
 
@@ -489,16 +489,8 @@ label.mnuLbl {float: right; margin-right: 10px; font-size: 21px; color: #5f456b;
     padding-bottom: 50px;
     padding-top: 50px;
     color: #8E8496;
+    font-size: 16px;
 }
-
-#tarifas-y-reembolsos p {
-	column-gap: 85px;
-	column-count: 2;
-	font-size: 16px;
-	text-align: justify;
-    margin: 20px 0px;
-	}
-	
 	
 #tarifas-y-reembolsos h1{
 	margin-bottom: 50px;
@@ -520,7 +512,64 @@ label.mnuLbl {float: right; margin-right: 10px; font-size: 21px; color: #5f456b;
     -webkit-font-smoothing: antialiased;
     color: #5D4469;
 }
+
+#tarifas-y-reembolsos h1, #tarifas-y-reembolsos h3 {color: #5f456b;} 
+
+#tarifas-y-reembolsos p {
+	font-size: 16px;
+	text-align: justify;
+    margin: 20px 0px;
+	}
 	
+#tarifas-y-reembolsos p.footnote {
+    background: #f9f9f9;
+    border: 1px solid #ccc;
+    padding: 8px;
+    border-radius: 4px;
+    margin: 0.5em 0 0 0;
+    font-size: 14px;
+}
+
+#tarifas-y-reembolsos details { margin-bottom: 8px; }
+#tarifas-y-reembolsos details ul { padding-left: 35px;  text-align: justify; }
+#tarifas-y-reembolsos summary { font-weight: bold;  color: #5f456b;}
+#tarifas-y-reembolsos summary::marker { color: #31C4C4;}
+#tarifas-y-reembolsos ul.seguros { color: #31C4C4; }
+
+.tarifSection li .texto {white-space: nowrap; font-weight: bold;}
+.tarifSection li {
+  display: flex;
+  align-items: center;
+  margin: 8px 0; /* Espaciado entre elementos, opcional */
+}
+
+.tarifSection li .dotted-line {
+  flex-grow: 1;
+  border-bottom: 1px dashed;
+  margin: 0 10px;
+}
+
+
+.tarifSection {
+    display: inline-block;
+    vertical-align: top;
+    padding: 0px 20px;
+    width: 100%;    
+}
+
+	
+
+@media (min-width: 992px) {
+    .tarifSection {	padding: 0px 20px; 	width: 49%;	}
+    
+    #tarifas-y-reembolsos details ul,
+#tarifas-y-reembolsos details p { column-count: 2; column-gap: 50px; }
+}
+	
+
+
+
+/*	
 #tarifas-y-reembolsos a {
 	font-size: 18px;
     color: #8E8496;
@@ -528,7 +577,7 @@ label.mnuLbl {float: right; margin-right: 10px; font-size: 21px; color: #5f456b;
 }
 
 #tarifas-y-reembolsos a:after {	content: "\e60f"; font-family: icoadaia; margin-left: 10px;line-height: 1;font-size: 20px;}
-
+*/
 
 /* ------------------------------------------------- */
 /*             Metodología de trabajo                */
