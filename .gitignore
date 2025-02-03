@@ -1,1 +1,4 @@
 /cfg.php
+/vendor/
+/composer.lock
+/composer.phar
