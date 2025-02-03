@@ -213,14 +213,17 @@ function enviarCorreo ($contents): bool
 function mostrarFormulario ()
 {
 	$retVal = '<form id="adaiaContactForm" action="" method="post" onsubmit="return checkCaptchaAndSubmit(event)">
-        <label for="name">Nombre:</label>
-        <input type="text" name="name" id="name" required><br><br>
+        <label for="name">Tu nombre:</label>
+        <input type="text" name="adaiaName" id="name" required><br><br>
 			
-        <label for="email">Email:</label>
-        <input type="email" name="email" id="email" required><br><br>
+        <label for="email">Tu Email:</label>
+        <input type="email" name="adaiaEmail" id="email" required><br><br>
 			
-        <label for="message">Mensaje:</label>
-        <textarea name="message" id="message" rows="5" required></textarea><br><br>
+        <label for="message">Tu mensaje:</label>
+        <textarea name="adaiaMessage" id="message" rows="5" required></textarea><br><br>
+
+		<label for="emailBC" id="lbl_emailBC">Repite el Email:</label>
+        <input type="email" name="emailBC" id="emailBC">
 			
 			
 		<label>
@@ -269,22 +272,29 @@ function checkCaptchaAndSubmit(e) {
 
 // Variable para almacenar mensajes de estado
 $statusMessage = '';
-$statusColor = '';
+$statusClass = '';
 $showForm = true;
 
 // Procesamiento del formulario
 if ($_SERVER ['REQUEST_METHOD'] === 'POST')
 {
 	// Validamos el CAPTCHA
-	if (empty ($_POST ['g-recaptcha-response']))
+	if (! empty ($_POST ['emailBC']))
+	{
+		// Ha caido en el Honeypot
+		$statusMessage = 'Mensaje enviado correctamente';
+		$statusClass = 'success';
+		$showForm = false;
+	}
+	else if (empty ($_POST ['g-recaptcha-response']))
 	{
 		$statusMessage = 'Por favor, verifica el CAPTCHA.';
-		$statusColor = 'red';
+		$statusClass = 'sendError';
 	}
 	else if (! isset ($_POST ['privacy_policy']))
 	{ // Validación del checkbox
 		$statusMessage = 'Debe aceptar la política de privacidad para enviar el formulario.';
-		$statusColor = 'red';
+		$statusClass = 'sendError';
 	}
 	else
 	{
@@ -293,34 +303,36 @@ if ($_SERVER ['REQUEST_METHOD'] === 'POST')
 
 		$body = '<table>';
 		$body .= '<tr><th>Centro</th><td>' . ADAIA_CENTRO . '</td></tr>';
+		$body .= '<tr><th>Nombre</th><td>' . $_POST ['adaiaName'] . '</td></tr>';
+		$body .= '<tr><th>Email</th><td>' . $_POST ['adaiaEmail'] . '</td></tr>';
+		$body .= '<tr><th>Mensaje</th><td>' . nl2br ($_POST ['adaiaMessage']) . '</td></tr>';
 		$body .= '<tr><th>SPAM score</th><td>' . $score . '</td></tr>';
-		$body .= '<tr><th>Nombre</th><td>' . $_POST ['name'] . '</td></tr>';
-		$body .= '<tr><th>Email</th><td>' . $_POST ['email'] . '</td></tr>';
-		$body .= '<tr><th>Mensaje</th><td>' . nl2br ($_POST ['message']) . '</td></tr>';
 		$body .= '</table>';
 
 		// Si ha fallado el captcha recibiremos una cadena
 		if (! is_float ($score))
 		{
-			$response = $score;
-			$statusColor = 'red';
+			// $response = $score;
+			$statusClass = 'sendError';
 		}
 		else if ($score >= 0.6)
 		{
 			// Podemos recibir 0.1, 0.3, 0.7, 0.9: vamos a considerar en la primera versión que 0.7 y 0.9 son válidos
 			saveToFile ($body);
-			$result = enviarCorreo ($body);
+			// $result = enviarCorreo ($body);
+			enviarCorreo ($body);
 
 			// TODO: analizar el resultado de envioi de correo
 
 			$statusMessage = '¡Mensaje enviado correctamente!';
-			$statusColor = 'green';
+			$statusClass = 'success';
 			$showForm = false;
 		}
 		else
 		{
 			$statusMessage = 'Error de verificación del CAPTCHA.';
-			$statusColor = 'red';
+			$statusClass = 'sendError';
+			$showForm = false;
 			saveToFile ($body);
 		}
 	}
@@ -329,10 +341,11 @@ if ($_SERVER ['REQUEST_METHOD'] === 'POST')
 get_header ();
 
 // var_dump ($showForm);
+echo '<div class="container" id="contacto"><div class="content"><h2>Contacta con nosotros</h2>';
 
 if ($statusMessage !== '')
 {
-	echo "<p style=\"color:$statusColor;\">$statusMessage</p>";
+	echo "<p class=\"$statusClass\">$statusMessage</p>";
 }
 
 if ($showForm)
@@ -341,4 +354,5 @@ if ($showForm)
 	echo mostrarFormulario ();
 }
 
+echo '</div></div>';
 get_footer ();

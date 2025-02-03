@@ -329,6 +329,107 @@ label.mnuLbl {float: right; margin-right: 10px; font-size: 21px; color: #5f456b;
 /* ------------------------------------------------- */
 
 
+/* Estilo general del formulario */
+#adaiaContactForm {
+  margin: 20px auto;            /* Centrado horizontal y margen superior/inferior */
+  padding: 20px;                /* Espaciado interno */
+  border-radius: 8px;           /* Bordes redondeados */
+  
+  /*Añadir caja*/
+  /*
+  border: 1px solid #dddddd78;
+  background-color: #f9f9f978;*/
+}
+
+/* Estilo para las etiquetas (labels) */
+#adaiaContactForm label {
+  display: block;               /* Cada label en su línea */
+  font-weight: bold;            /* Texto en negrita */
+  margin-bottom: 5px;           /* Espaciado inferior */
+  font-size: medium;
+}
+
+/* Estilo para los campos de entrada y textarea */
+#adaiaContactForm input[type="text"],
+#adaiaContactForm input[type="email"],
+#adaiaContactForm textarea {
+  width: 100%;                  /* Ocupan todo el ancho del formulario */
+  padding: 10px;                /* Espaciado interno */
+  margin-bottom: 15px;          /* Espaciado inferior */
+  border: 1px solid #ccc;       /* Borde suave */
+  border-radius: 4px;           /* Bordes redondeados */
+  box-sizing: border-box;       /* Incluye padding y border en el ancho total */
+  background-color: #ACE8E5;
+}
+
+/* Estilo para el checkbox */
+#adaiaContactForm input[type="checkbox"] {
+  margin-right: 5px;            /* Espaciado entre checkbox y el texto */
+}
+
+/* Estilo para el enlace dentro del checkbox */
+#adaiaContactForm a {
+  color: #007BFF;               /* Color de enlace */
+  text-decoration: none;        /* Sin subrayado */
+}
+#adaiaContactForm a:hover {
+  text-decoration: underline;   /* Subrayado al pasar el ratón */
+}
+
+/* Estilo para el enfoque (focus) en inputs y textarea */
+#adaiaContactForm input[type="text"]:focus,
+#adaiaContactForm input[type="email"]:focus,
+#adaiaContactForm textarea:focus {
+  border-color: #66afe9;        /* Cambio de color de borde */
+  box-shadow: 0 0 8px rgba(102,175,233,0.6); /* Sombra suave */
+  outline: none;                /* Quita el contorno por defecto */
+  background-color: #FFF;
+}
+
+
+label#lbl_emailBC, #emailBC {display: none;}
+
+
+p.success {
+  background-color: #d4edda;  /* Fondo verde claro */
+  color: #155724;             /* Texto verde oscuro */
+  border: 1px solid #c3e6cb;  /* Borde verde */
+  padding: 25px;
+  margin: 15px 0;
+  border-radius: 4px;
+  text-align: center;
+}
+
+/* Mensaje de error al enviar */
+p.sendError {
+  background-color: #f8d7da;  /* Fondo rojo claro */
+  color: #721c24;             /* Texto rojo oscuro */
+  border: 1px solid #f5c6cb;  /* Borde rojo */
+  padding: 25px;
+  margin: 15px 0;
+  border-radius: 4px;
+}
+
+
+#submitContactForm {
+  border: none;             /* Sin borde */
+  background: transparent;  /* Fondo transparente */
+  padding: 0;               /* Sin padding */
+  margin: 0;                /* Sin margen interno */
+  font: inherit;            /* Hereda fuente, tamaño, color, etc. */
+  text-decoration: none;    /* Sin subrayado */
+  color: inherit;           /* Hereda el color del contenedor */
+  cursor: pointer;          /* Cambia el cursor al pasar por encima */
+  display: inline-block;    /* Permite aplicar float y conservar comportamiento inline */
+  float: right;             /* Alinea el botón a la derecha */
+  font-size: 18px;
+  color: #ACE8E5;
+  vertical-align: bottom;
+}
+
+#submitContactForm:hover {color:#fff;}
+
+#submitContactForm:after {font-family: icoadaia; content: "\e611"; font-size: 26px;line-height: 20px;margin-left: 5px;vertical-align: bottom;}
 
 
 /* ------------------------------------------------- */
@@ -406,6 +507,8 @@ label.mnuLbl {float: right; margin-right: 10px; font-size: 21px; color: #5f456b;
     #contacto .lnk-form {width: 68%; }
     #contacto .lnk-form {padding: 50px;text-align: left;}
 }
+
+
 
 
 
