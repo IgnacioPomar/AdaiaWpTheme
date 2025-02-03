@@ -767,7 +767,7 @@ label.mnuLbl {float: right; margin-right: 10px; font-size: 21px; color: #5f456b;
 .subpages.nuestro-equipo {background-color: #FAF7F2;}
 
 img.team-info-image {
-	height: 558px;
+	height: 588px;
 	width: auto;
 	padding-top: 30px;
 	display: block;
@@ -817,6 +817,20 @@ img.team-info-image {
 		padding-left: 10px;
         padding-right: 10px;
 	}
+	
+.team-info-sumary:after, .team-info-details:after {
+    font-family: icoadaia;   
+    position: absolute;
+    bottom: 16px;
+    font-size: 25px;
+    right: 13px;
+    color: #8E8496;
+}
+
+.team-info-sumary:after {content: "\e60f";}
+.team-info-details:after {content: "\e616";}
+
+
 
 
 @media (min-width: 992px) {
