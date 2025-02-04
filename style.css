@@ -75,6 +75,11 @@ ul {padding: 0px;}
 h1 {text-align: center; font-size: 25px;}
 
 
+details { margin-bottom: 8px; }
+summary { font-weight: bold;  color: #5f456b;}
+summary::marker { color: #31C4C4;}
+
+
 .content {
 	width: 100%; 
 	padding-right: 15px;
@@ -559,6 +564,8 @@ p.sendError {
 	#areas-de-intervencion ul {display: flex; gap: 10px;}
 	#areas-de-intervencion li {width: 32%; position: relative;}
 	#areas-de-intervencion li a {position: absolute; right: 10px; bottom: 10px;}
+	
+	#areas-de-intervencion-content details inf {columns:  2; column-gap: 55px; }
 }
 
 
@@ -594,6 +601,35 @@ p.sendError {
 #areas-de-intervencion li strong {display:block;    text-align: center; color: #FFF;}
 
 
+#areas-de-intervencion-content #areas-de-intervencion {padding-bottom: 0px; margin-bottom: 50px;}
+#areas-de-intervencion-content #areas-de-intervencion li {color: #FFF;opacity: 0.5;}
+#areas-de-intervencion-content #areas-de-intervencion li.selected {opacity: 1;position: relative;}
+
+#areas-de-intervencion-content #areas-de-intervencion li.selected:after {opacity: 1;}
+
+#areas-de-intervencion-content {font-size: 16px;}
+#areas-de-intervencion-content > .content {width:100%; padding: 0px;}
+#areas-de-intervencion-content summary {margin-bottom: 5px;}
+#areas-de-intervencion-content details b {color: #5f456b;}
+#areas-de-intervencion-content details li {margin-bottom: 5px;}
+#areas-de-intervencion-content details li::marker {color: #31C4C4;}  
+#areas-de-intervencion-content details inf {color: #8E8496;text-align: justify; font-size: 14px; display: block; padding-left: 22px;}
+
+
+#areas-de-intervencion-content #areas-de-intervencion li.selected:after {
+  content: "";
+  display: block;
+  width: 0;
+  height: 0;
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+  border-bottom: 8px solid white; /* Triángulo blanco apuntando hacia arriba */
+  
+  position: absolute;
+  bottom: 0px; /* Ajusta la posición vertical según necesites */
+  left: 50%;
+  transform: translateX(-50%); /* Centra el triángulo horizontalmente */
+}
 
 /* ------------------------------------------------- */
 /*              Tarifas y reembolsos                 */
@@ -644,10 +680,7 @@ p.sendError {
     font-size: 14px;
 }
 
-#tarifas-y-reembolsos details { margin-bottom: 8px; }
 #tarifas-y-reembolsos details ul { padding-left: 35px;  text-align: justify; }
-#tarifas-y-reembolsos summary { font-weight: bold;  color: #5f456b;}
-#tarifas-y-reembolsos summary::marker { color: #31C4C4;}
 #tarifas-y-reembolsos ul.seguros { color: #31C4C4; }
 
 .tarifSection li .texto {white-space: nowrap; font-weight: bold;}
