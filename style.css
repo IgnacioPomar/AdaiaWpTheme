@@ -206,7 +206,7 @@ label.mnuLbl {float: right; margin-right: 10px; font-size: 21px; color: #5f456b;
 
 
 
-#slider img {object-fit: cover; height: calc(100vh - 35px); width: 100%; display: block;}
+#slider img {object-fit: cover; height: calc(100dvh - 35px); width: 100%; display: block;}
 #slider .slide {position: relative; width: 100%; display:none;}
 #slider #slide-0.slide {display:block;}
 
@@ -545,9 +545,20 @@ p.sendError {
 
 
 #areas-de-intervencion li {width: 100%;}
+#areas-de-intervencion li a {color: #ACE8E5;font-size: 18px;}
+#areas-de-intervencion li a:hover {color: #FFF;}
+#areas-de-intervencion li a:after {
+	font-family: icoadaia;
+	content: "\e60f";
+	font-size: 26px;
+	padding-left: 10px;
+    vertical-align: middle;
+	}
 
 @media (min-width: 768px) {
-	#areas-de-intervencion li {width: 32%;}
+	#areas-de-intervencion ul {display: flex; gap: 10px;}
+	#areas-de-intervencion li {width: 32%; position: relative;}
+	#areas-de-intervencion li a {position: absolute; right: 10px; bottom: 10px;}
 }
 
 
@@ -561,9 +572,9 @@ p.sendError {
     color: #ACE8E5;
 }
 
-#areas-de-intervencion li:nth-child(1)::before {    content: "\e60e";}
-#areas-de-intervencion li:nth-child(2)::before {    content: "\e614";}
-#areas-de-intervencion li:nth-child(3)::before {    content: "\e60c";}
+#areas-de-intervencion li.adultos::before {    content: "\e60e";}
+#areas-de-intervencion li.ninos::before {    content: "\e614";}
+#areas-de-intervencion li.centros::before {    content: "\e60c";}
 
 
 #areas-de-intervencion li:before {
