@@ -107,17 +107,16 @@ summary::marker { color: #31C4C4;}
 
 
 .contact-footer {
-    background-color: #31C4C4;
+    background-color: #5D4469;
     text-align: center;
     color: #FFF;
     padding: 40px;
 }
 
-.contact-footer a {
-    opacity: 0.8;
-    color: #FFF;
-}
-.contact-footer a:hover {opacity: 1.0;}
+.contact-footer.frontpage {background-color: #31C4C4;}
+
+.contact-footer a, .contact-footer p {opacity: 0.8;color: #FFF;}
+.contact-footer a:hover {opacity: 1;}
 
 /* ------------------------------------------------- */
 /*                      Header                       */
