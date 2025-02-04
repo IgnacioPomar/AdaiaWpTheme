@@ -579,9 +579,9 @@ p.sendError {
     color: #ACE8E5;
 }
 
-#areas-de-intervencion li.adultos::before {    content: "\e60e";}
-#areas-de-intervencion li.ninos::before {    content: "\e614";}
-#areas-de-intervencion li.centros::before {    content: "\e60c";}
+#areas-de-intervencion li.adultos::before {content: "\e60e";}
+#areas-de-intervencion li.ninos::before {content: "\e614";}
+#areas-de-intervencion li.centros::before { content: "\e60c";}
 
 
 #areas-de-intervencion li:before {
@@ -609,6 +609,7 @@ p.sendError {
 
 #areas-de-intervencion-content {font-size: 16px;}
 #areas-de-intervencion-content > .content {width:100%; padding: 0px;}
+#areas-de-intervencion-content ul {padding: revert;}
 #areas-de-intervencion-content summary {margin-bottom: 5px;}
 #areas-de-intervencion-content details b {color: #5f456b;}
 #areas-de-intervencion-content details li {margin-bottom: 5px;}
