@@ -65,3 +65,20 @@ function disable_emojis_tinymce ($plugins)
 		return array ();
 	}
 }
+
+
+// ----------- Disable gutenberg_styles ------------
+function remove_gutenberg_styles_for_guests ()
+{
+	// Check if the user is not logged in
+	if (! is_admin () && ! is_user_logged_in ())
+	{
+		// Remove Gutenberg block library CSS
+		wp_dequeue_style ('wp-block-library');
+		wp_dequeue_style ('wp-block-library-theme');
+		wp_dequeue_style ('wc-block-style'); // If using WooCommerce
+		wp_dequeue_style ('global-styles'); // For WordPress 5.9+ global styles
+	}
+}
+add_action ('wp_enqueue_scripts', 'remove_gutenberg_styles_for_guests', 100);
+
