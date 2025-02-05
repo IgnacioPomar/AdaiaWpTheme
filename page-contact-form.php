@@ -228,7 +228,7 @@ function mostrarFormulario ()
 			
 		<label>
             <input type="checkbox" name="privacy_policy" required>
-            Acepto la <a href="/politica-de-privacidad/" target="_blank">política de privacidad</a>.
+            Acepto la <a href="/legal/politica-de-privacidad/" target="_blank">política de privacidad</a>.
         </label><br><br>
 			
 			
