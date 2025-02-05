@@ -527,9 +527,7 @@ p.sendError {
     padding-top: 50px;
 }
 
-#areas-de-intervencion h1{
-	margin-bottom: 50px;
-}
+#areas-de-intervencion h1 {margin-bottom: 50px;}
 
 #areas-de-intervencion h1:before {
     content: "\e60d";
@@ -599,7 +597,7 @@ p.sendError {
 
 #areas-de-intervencion li strong {display:block;    text-align: center; color: #FFF;}
 
-
+#areas-de-intervencion-content h2 {color: #5D4469;}
 #areas-de-intervencion-content #areas-de-intervencion {padding-bottom: 0px; margin-bottom: 50px;}
 #areas-de-intervencion-content #areas-de-intervencion li {color: #FFF;opacity: 0.5;}
 #areas-de-intervencion-content #areas-de-intervencion li.selected {opacity: 1;position: relative;}
