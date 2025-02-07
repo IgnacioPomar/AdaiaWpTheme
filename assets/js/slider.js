@@ -6,24 +6,37 @@ $(document).ready(function() {
     const imgElement = pictureElement.find('img');
     const textElement = slider.find('.slide .txt');
 
+    function preloadImage(src) {
+        return new Promise((resolve, reject) => {
+            const img = new Image();
+            img.src = src;
+            img.onload = resolve;
+            img.onerror = reject;
+        });
+    }
+
     function changeSlide() {
-        currentIndex = (currentIndex + 1) % slides.length;
+        const nextIndex = (currentIndex + 1) % slides.length;
+        const newWebp = slides[nextIndex].img + ".webp";
+        const newJpg = slides[nextIndex].img;
 
-        // Obtener nuevas rutas de imagen (WebP y JPG)
-        const newWebp = slides[currentIndex].img + ".webp";
-        const newJpg = slides[currentIndex].img;
+        // Precargar la nueva imagen antes de cambiarla
+        preloadImage(newJpg)
+            .then(() => preloadImage(newWebp)) // Precargar WebP después del JPG
+            .then(() => {
+                imgElement.fadeOut(300, function() {
+                    sourceElement.attr('srcset', newWebp);
+                    imgElement.attr('src', newJpg);
+                    imgElement.fadeIn(300);
+                });
 
-        // Animación de cambio de imagen
-        imgElement.fadeOut(300, function() {
-            sourceElement.attr('srcset', newWebp); // Cambia el source WebP
-            imgElement.attr('src', newJpg); // Cambia el fallback JPG/PNG
-            imgElement.fadeIn(300);
-        });
+                textElement.fadeOut(300, function() {
+                    $(this).text(slides[nextIndex].text).fadeIn(300);
+                });
 
-        // Animación de cambio de texto
-        textElement.fadeOut(300, function() {
-            $(this).text(slides[currentIndex].text).fadeIn(300);
-        });
+                currentIndex = nextIndex; // Actualizar índice solo después del cambio exitoso
+            })
+            .catch(() => console.error("Error al cargar la imagen:", newJpg));
     }
 
     setInterval(changeSlide, 5000);
