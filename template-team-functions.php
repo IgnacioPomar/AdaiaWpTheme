@@ -13,11 +13,13 @@ function formatTeam ($id, $postTitle, $postName, $content)
 
 	echo '<div id="' . $postName . '" class="team-member">';
 
-	// if (has_post_thumbnail ())
-	$thumbnail_url = get_the_post_thumbnail_url ($id, 'large');
-	if ($thumbnail_url)
+	$imgUrl = get_the_post_thumbnail_url ($id, 'large');
+	if ($imgUrl)
 	{
-		echo '<img class="team-info-image" src="' . $thumbnail_url . '" alt="' . $teamMemberName . '" scale="0" >';
+		$webpUrl = $imgUrl . '.webp';
+		echo '<picture><source srcset="' . esc_url ($webpUrl) . '" type="image/webp">';
+		echo '<img class="team-info-image" src="' . $imgUrl . '" alt="' . $teamMemberName . '" height="588" width="392">';
+		echo '</picture>';
 	}
 
 	$toggleId = 'toggleTeamInfo' . $postName;
