@@ -201,8 +201,7 @@ label.mnuLbl {float: right; margin-right: 10px; font-size: 21px; color: #5f456b;
 
 
 #slider img {object-fit: cover; height: calc(100dvh - 35px); width: 100%; display: block;}
-#slider .slide {position: relative; width: 100%; display:none;}
-#slider #slide-0.slide {display:block;}
+#slider .slide {position: relative; width: 100%; display:block;}
 
 #slider .slide .txt {
   position: absolute;

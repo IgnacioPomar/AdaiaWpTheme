@@ -58,45 +58,28 @@ get_header ();
 $themeBaseUri = get_template_directory_uri ();
 
 ?>
+<script defer src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script defer src="<?=$themeBaseUri?>/assets/js/slider.js"></script>
+
+<script>
+const slides = [
+    { img: '<?=$themeBaseUri?>/assets/img/sld01-sientes.jpg', text: 'Comprende lo que sientes' },
+    { img: '<?=$themeBaseUri?>/assets/img/sld02-emocion.jpg', text: 'Transmite emoción' },
+    { img: '<?=$themeBaseUri?>/assets/img/sld03-metas.jpg', text: 'Realiza tus metas' },
+    { img: '<?=$themeBaseUri?>/assets/img/sld04-sonrie.jpg', text: 'Sonríe' }
+];
+</script>
+
+
 <section id="slider">
-	<div id="slide-0" class="slide">
-		<img src="<?=$themeBaseUri?>/assets/img/sld01-sientes.jpg" >
+	<div class="slide">
+		<picture>
+			<source srcset="<?=$themeBaseUri?>/assets/img/sld01-sientes.jpg.webp" type="image/webp">
+			<img src="<?=$themeBaseUri?>/assets/img/sld01-sientes.jpg" >
+		</picture>
 		<span class="txt">Comprende lo que sientes</span>
 	</div>
-	<div id="slide-1" class="slide">
-		<img src="<?=$themeBaseUri?>/assets/img/sld02-emocion.jpg" >
-		<span class="txt">Transmite emoción</span>
-	</div>
-	<div id="slide-2" class="slide">
-		<img src="<?=$themeBaseUri?>/assets/img/sld03-metas.jpg" >
-		<span class="txt">Realiza tus metas</span>
-	</div>
-	<div id="slide-3" class="slide">
-		<img src="<?=$themeBaseUri?>/assets/img/sld04-sonrie.jpg" >
-		<span class="txt">Sonríe</span>
-	</div>
 </section>
-
- <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            let slides = document.querySelectorAll("#slider .slide");
-            let currentIndex = 0;
-            let totalSlides = slides.length;
-
-            function showSlide(index) {
-                slides.forEach(slide => slide.style.display = "none");
-                slides[index].style.display = "block";
-            }
-
-            function nextSlide() {
-                currentIndex = (currentIndex + 1) % totalSlides;
-                showSlide(currentIndex);
-            }
-
-            setInterval(nextSlide, 3000);
-            showSlide(currentIndex);
-        });
-    </script>
 
 
 <section id="acronyms">
