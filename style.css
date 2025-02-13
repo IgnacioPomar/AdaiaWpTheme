@@ -566,8 +566,9 @@ p.sendError {
 }
 
 #areas-de-intervencion li.adultos::before {content: "\e60e";}
-#areas-de-intervencion li.ninos::before {content: "\e614";}
-#areas-de-intervencion li.centros::before { content: "\e60c";}
+#areas-de-intervencion li.emdr::before    {content: "\e613";}
+#areas-de-intervencion li.ninos::before   {content: "\e614";}
+#areas-de-intervencion li.centros::before {content: "\e60c";}
 
 
 #areas-de-intervencion li:before {
