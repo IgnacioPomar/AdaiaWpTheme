@@ -3,17 +3,6 @@
 <head>
     <meta charset="<?=bloginfo ('charset');?>">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <style>@font-face {
-        font-family: 'icoadaia';
-        src:url('assets/fonts/icoadaia.eot');
-        src:url('assets/fonts/iocadaia.eot?#iefix') format('embedded-opentype'),
-                url('assets/fonts/icoadaia.ttf') format('truetype'),
-                url('assets/fonts/icoadaia.woff') format('woff'),
-                url('assets/fonts/icoadaia.svg#icoadaia') format('svg');
-        font-weight: normal;
-        font-style: normal;
-}
-    </style>
     <?=wp_head ();?>
 </head>
 <body <?=body_class ();?>>

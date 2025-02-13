@@ -37,6 +37,23 @@ function getMnuAnchored ()
 	return $retval;
 }
 
+
+function addIconFont ()
+{
+	echo '<style>
+        @font-face {
+            font-family: "icoadaia";
+            src: url("' . get_template_directory_uri () . '/assets/fonts/icoadaia_v2.woff2") format("woff2"),
+                 url("' . get_template_directory_uri () . '/assets/fonts/icoadaia_v2.woff") format("woff"),
+                 url("' . get_template_directory_uri () . '/assets/fonts/icoadaia_v2.ttf") format("truetype");
+            font-weight: normal;
+            font-style: normal;
+            font-display: block;
+        }
+    </style>';
+}
+add_action ('wp_head', 'addIconFont');
+
 // ----------- Disable emojis in WordPress ------------
 add_action ('init', 'smartwp_disable_emojis');
 
