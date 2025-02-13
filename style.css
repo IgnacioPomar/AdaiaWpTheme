@@ -16,8 +16,8 @@
 
 /* @import must be at top of file, otherwise CSS will not work */
 
-@font-face {font-family: "MuseoSansRounded-300";src: url("assets/fonts/MuseoSansRounded-300.woff2") format("woff2"),url("assets/fonts/MuseoSansRounded-300.woff") format("woff"),url("assets/fonts/MuseoSansRounded-300.ttf") format("truetype");font-display: swap;}
-@font-face {font-family: "MuseoSansRounded-500";src: url("assets/fonts/MuseoSansRounded-500.woff2") format("woff2"),url("assets/fonts/MuseoSansRounded-300.woff") format("woff"),url("assets/fonts/MuseoSansRounded-500.ttf") format("truetype");font-display: swap;}
+@font-face {font-family: "Raleway-300";src: url("assets/fonts/Raleway-300.woff2") format("woff2"),url("assets/fonts/Raleway-300.woff") format("woff"),url("assets/fonts/Raleway-300.ttf") format("truetype");font-display: swap;}
+@font-face {font-family: "Raleway-500";src: url("assets/fonts/Raleway-500.woff2") format("woff2"),url("assets/fonts/Raleway-300.woff") format("woff"),url("assets/fonts/Raleway-500.ttf") format("truetype");font-display: swap;}
  
 /* ------------------------------------------------- */
 /*              Estilos Generales                    */
@@ -35,7 +35,7 @@ html {
 
 html, body {
     height: 100%;
-    font-family: 'MuseoSansRounded-300', sans-serif;
+    font-family: 'Raleway-300', sans-serif;
     font-size: 14px;
     margin: 0px;
     background-color: #FAF7F2;
@@ -53,7 +53,7 @@ h1, h2, h3, h4, h5 {
     color: inherit;
 }
 h1, h2, h3, h4, h5 {
-    font-family: 'MuseoSansRounded-500', "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-family: 'Raleway-500', "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
 
@@ -465,7 +465,7 @@ p.sendError {
 #contacto .lnk-form {
 	display: inline-block; 
 	font-size: 18px;
-	font-family: 'MuseoSansRounded-500', "Helvetica Neue", Helvetica, Arial, sans-serif;
+	font-family: 'Raleway-500', "Helvetica Neue", Helvetica, Arial, sans-serif;
 	vertical-align: top;
 	
 	display: inline-block;
