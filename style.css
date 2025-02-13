@@ -547,13 +547,17 @@ p.sendError {
 	}
 
 @media (min-width: 768px) {
-	#areas-de-intervencion ul {display: flex; gap: 10px;}
-	#areas-de-intervencion li {width: 32%; position: relative;}
+	#areas-de-intervencion ul { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+	#areas-de-intervencion li {position: relative;}
 	#areas-de-intervencion li a {position: absolute; right: 10px; bottom: 10px;}
 	
 	#areas-de-intervencion-content details inf {columns:  2; column-gap: 55px; }
 }
 
+
+@media (min-width: 992px) {
+    #areas-de-intervencion ul {display: flex; gap: 10px;}
+}
 
 #areas-de-intervencion li {
     list-style: none;
