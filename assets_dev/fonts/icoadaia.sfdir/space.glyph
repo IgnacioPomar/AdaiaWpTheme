@@ -1,0 +1,14 @@
+StartChar: space
+Encoding: 32 32 1
+Width: 512
+GlyphClass: 1
+Flags: W
+LayerCount: 2
+Fore
+SplineSet
+0 0 m 1,0,-1
+ 0 0 l 1,1,-1
+ 0 0 l 1,2,-1
+ 0 0 l 1,0,-1
+EndSplineSet
+EndChar
