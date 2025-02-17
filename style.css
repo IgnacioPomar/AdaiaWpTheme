@@ -2,7 +2,7 @@
  * Theme Name:        Adaia
  * Theme URI:         https://psicoadaia.com/
  * Description:       ADAIA  exclusive theme
- * Version:           1.0.2
+ * Version:           1.0.3
  * Author:            Ignacio Pomar Ballestero
  * License: © 2024 Beatriz Sanchez Ledesma. All rights reserved.
  * Tested up to:      6.5
@@ -566,13 +566,22 @@ p.sendError {
     color: #ACE8E5;
 }
 
-#areas-de-intervencion li.adultos::before {content: "\e60e";}
-#areas-de-intervencion li.emdr::before    {content: "\e613";}
-#areas-de-intervencion li.ninos::before   {content: "\e614";}
-#areas-de-intervencion li.centros::before {content: "\e60c";}
+#areas-de-intervencion li.adultos a::before {content: "\e60e";}
+#areas-de-intervencion li.emdr    a::before    {content: "\e613";}
+#areas-de-intervencion li.ninos   a::before   {content: "\e614";}
+#areas-de-intervencion li.centros a::before {content: "\e60c";}
+
+#areas-de-intervencion li.adultos.selected::before {content: "\e60e";}
+#areas-de-intervencion li.emdr.selected::before    {content: "\e613";}
+#areas-de-intervencion li.ninos.selected::before   {content: "\e614";}
+#areas-de-intervencion li.centros.selected::before {content: "\e60c";}
+
+#areas-de-intervencion-content #areas-de-intervencion li a {position: relative;}
+#areas-de-intervencion-content #areas-de-intervencion li a:after {display:none;}
 
 
-#areas-de-intervencion li:before {
+#areas-de-intervencion li.selected:before,
+#areas-de-intervencion li a:before {
     font-size: 65px;
     display: block;
     font-family: icoadaia;
