@@ -17,7 +17,7 @@
 /* @import must be at top of file, otherwise CSS will not work */
 
 @font-face {font-family: "Raleway-300";src: url("assets/fonts/Raleway-300.woff2") format("woff2"),url("assets/fonts/Raleway-300.woff") format("woff"),url("assets/fonts/Raleway-300.ttf") format("truetype");font-display: swap;}
-@font-face {font-family: "Raleway-500";src: url("assets/fonts/Raleway-500.woff2") format("woff2"),url("assets/fonts/Raleway-300.woff") format("woff"),url("assets/fonts/Raleway-500.ttf") format("truetype");font-display: swap;}
+@font-face {font-family: "Raleway-500";src: url("assets/fonts/Raleway-500.woff2") format("woff2"),url("assets/fonts/Raleway-500.woff") format("woff"),url("assets/fonts/Raleway-500.ttf") format("truetype");font-display: swap;}
  
 /* ------------------------------------------------- */
 /*              Estilos Generales                    */
