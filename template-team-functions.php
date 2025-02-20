@@ -18,7 +18,7 @@ function formatTeam ($id, $postTitle, $postName, $content)
 	{
 		$webpUrl = $imgUrl . '.webp';
 		echo '<picture><source srcset="' . esc_url ($webpUrl) . '" type="image/webp">';
-		echo '<img class="team-info-image" src="' . $imgUrl . '" alt="' . $teamMemberName . '" height="588" width="392">';
+		echo '<img class="team-info-image" src="' . $imgUrl . '" alt="' . $teamMemberName . '" height="588">';
 		echo '</picture>';
 	}
 
