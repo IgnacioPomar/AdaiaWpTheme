@@ -84,6 +84,19 @@ function disable_emojis_tinymce ($plugins)
 }
 
 
+function addManualHeader ()
+{
+	$ruta = get_template_directory () . '/manualHeader.txt'; // May me use get_stylesheet_directory
+
+	if (file_exists ($ruta))
+	{
+		$contenido = file_get_contents ($ruta);
+		echo $contenido;
+	}
+}
+add_action ('wp_head', 'addManualHeader');
+
+
 // ----------- Disable gutenberg_styles ------------
 function remove_gutenberg_styles_for_guests ()
 {
