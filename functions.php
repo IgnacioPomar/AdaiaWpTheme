@@ -117,7 +117,7 @@ add_action ('wp_enqueue_scripts', 'remove_gutenberg_styles_for_guests', 100);
 add_action ('admin_menu', function ()
 {
 	add_options_page ('Ajustes del tema Adaia', // Título de la página
-	'ThemeAdaiaSettings', // Nombre del menú
+	'Adaia Theme Settings', // Nombre del menú
 	'manage_options', // Capacidad necesaria
 	'settings_adaia', // Slug del menú
 	'show_settings_adaia' // Función de callback
