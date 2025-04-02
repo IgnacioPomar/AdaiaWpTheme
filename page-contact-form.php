@@ -341,7 +341,16 @@ if ($_SERVER ['REQUEST_METHOD'] === 'POST')
 get_header ();
 
 // var_dump ($showForm);
-echo '<div class="container" id="contacto"><div class="content"><h2>Contacta con nosotros</h2>';
+echo '<div class="container" id="contacto"><div class="content"><h2>' . get_the_title () . '</h2>';
+
+// Mostrar el contenido de la página desde el editor de WordPress
+while (have_posts ())
+{
+	the_post ();
+	the_content ();
+}
+
+echo '<span class="lnk-form">';
 
 if ($statusMessage !== '')
 {
@@ -354,5 +363,5 @@ if ($showForm)
 	echo mostrarFormulario ();
 }
 
-echo '</div></div>';
+echo '</span></div></div>';
 get_footer ();

@@ -346,7 +346,7 @@ label.mnuLbl {float: right; margin-right: 10px; font-size: 21px; color: #5f456b;
 /* Estilo general del formulario */
 #adaiaContactForm {
   margin: 20px auto;            /* Centrado horizontal y margen superior/inferior */
-  padding: 20px;                /* Espaciado interno */
+  padding: 0px;                 /* Espaciado interno */
   border-radius: 8px;           /* Bordes redondeados */
   
   /*Añadir caja*/
@@ -519,7 +519,7 @@ p.sendError {
 @media (min-width: 992px) {
     #contacto .col-cto { width: 30%; text-align: left;}
     #contacto .lnk-form {width: 68%; }
-    #contacto .lnk-form {padding: 50px;text-align: left;}
+    #contacto .lnk-form {padding: 0px;text-align: left;}
 }
 
 
