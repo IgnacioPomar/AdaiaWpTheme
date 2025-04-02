@@ -2,7 +2,7 @@
  * Theme Name:        Adaia
  * Theme URI:         https://psicoadaia.com/
  * Description:       ADAIA  exclusive theme
- * Version:           1.0.6
+ * Version:           1.0.8
  * Author:            Ignacio Pomar Ballestero
  * License: © 2024 Beatriz Sanchez Ledesma. All rights reserved.
  * Tested up to:      6.5
@@ -105,6 +105,30 @@ summary::marker { color: #31C4C4;}
 
 .contact-footer a, .contact-footer p {opacity: 0.8;color: #FFF;}
 .contact-footer a:hover {opacity: 1;}
+
+
+#contact a {
+  display: inline-block;
+  background-color: #5d4469;
+  opacity: 1;
+  padding: 12px 20px;
+  margin-bottom: 5px;
+  text-decoration: none;
+  font-weight: bold;
+  border-radius: 8px;
+  transition: background-color 0.3s ease;
+}
+
+#contact a:hover {
+  background-color: #45324d;
+}
+#contact a::after {
+  content: "\e605";
+  vertical-align: middle;
+  font-family: icoadaia;
+  margin-left: 10px;
+}
+
 
 /* ------------------------------------------------- */
 /*                      Header                       */
