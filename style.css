@@ -500,7 +500,7 @@ p.sendError {
     padding-top: 50px;
     text-align: center;
 }
-#contacto .lnk-form a:after {
+#contacto .lnk-form a#submitContactForm:after {
 	content: "\e611";
 	font-family: icoadaia;
 	font-size: 26px;
