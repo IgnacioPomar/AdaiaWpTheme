@@ -109,7 +109,7 @@ summary::marker { color: #31C4C4;}
 
 #contact a {
   display: inline-block;
-  background-color: #5d4469;
+  background-color: #31C4C4;
   opacity: 1;
   padding: 12px 20px;
   margin-bottom: 5px;
@@ -119,9 +119,8 @@ summary::marker { color: #31C4C4;}
   transition: background-color 0.3s ease;
 }
 
-#contact a:hover {
-  background-color: #45324d;
-}
+.frontpage #contact a {background-color: #5d4469;}
+#contact a:hover {background-color: #45324d;}
 #contact a::after {
   content: "\e605";
   vertical-align: middle;
