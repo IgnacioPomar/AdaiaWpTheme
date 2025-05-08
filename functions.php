@@ -34,6 +34,10 @@ function getMnuAnchored ()
 
 		$retval [] = "<a href=\"$baseUrl/#{$page->post_name}\">" . esc_html ($page->post_title) . '</a>';
 	}
+
+	// Add manually contactar page
+	$retval [] = '<a href="' . get_permalink (get_option ('adaia_contact_page')) . '">Contactar</a>';
+
 	return $retval;
 }
 
@@ -43,9 +47,9 @@ function addIconFont ()
 	echo '<style>
         @font-face {
             font-family: "icoadaia";
-            src: url("' . get_template_directory_uri () . '/assets/fonts/icoadaia_v2.woff2") format("woff2"),
-                 url("' . get_template_directory_uri () . '/assets/fonts/icoadaia_v2.woff") format("woff"),
-                 url("' . get_template_directory_uri () . '/assets/fonts/icoadaia_v2.ttf") format("truetype");
+            src: url("' . get_template_directory_uri () . '/assets/fonts/icoadaia_v3.woff2") format("woff2"),
+                 url("' . get_template_directory_uri () . '/assets/fonts/icoadaia_v3.woff") format("woff"),
+                 url("' . get_template_directory_uri () . '/assets/fonts/icoadaia_v3.ttf") format("truetype");
             font-weight: normal;
             font-style: normal;
             font-display: block;

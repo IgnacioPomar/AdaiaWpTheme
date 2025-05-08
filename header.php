@@ -17,8 +17,10 @@
             <nav>
 			<?php
 			$mnuOpcs = getMnuAnchored ();
-
-			$arrays = array_chunk ($mnuOpcs, 4);
+			// $numOpcs = count ($mnuOpcs);
+			// $chunkSize = intdiv ($numOpcs, 2) + ($numOpcs % 2); // Mitad +1 si es impar
+			$chunkSize = 4;
+			$arrays = array_chunk ($mnuOpcs, $chunkSize);
 
 			$ulClass = '';
 			foreach ($arrays as $opcs)
