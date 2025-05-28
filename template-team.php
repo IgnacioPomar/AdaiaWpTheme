@@ -2,8 +2,6 @@
 /*
  * Template Name: Plantilla con Campos Personalizados
  */
-include_once 'template-team-functions.php';
-
 if (isset ($GLOBALS ['currentPage']))
 {
 	$page = &$GLOBALS ['currentPage'];

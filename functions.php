@@ -17,6 +17,7 @@ function add_custom_templates ($templates)
 {
 	$templates ['page-contact-form.php'] = 'Formulario de contacto';
 	$templates ['template-team.php'] = 'Miembro del equipo';
+	$templates ['template-with-descendants.php'] = 'Por defecto con subpáginas';
 	return $templates;
 }
 add_filter ('theme_page_templates', 'add_custom_templates');
@@ -161,3 +162,120 @@ function show_settings_adaia ()
     </div>
     <?php
 }
+
+
+// --------------------------------------------------------------------------------------------------------------
+// ------------------------------------------- Theme custom functions -------------------------------------------
+// --------------------------------------------------------------------------------------------------------------
+
+/**
+ * Show the subpages of the current page
+ *
+ * @param array $subpages
+ *        	Array of subpages to show
+ * @param string $class
+ *        	Additional class for the container
+ */
+function showSubpages (&$subpages, $class = "")
+{
+	if ($subpages)
+	{
+		echo '<div class="subpages ' . $class . '">';
+		foreach ($subpages as $subpage)
+		{
+			// Skip the -1 pages: in this theme ar "independent pages"
+			if ($subpage->menu_order > 100 || $subpage->menu_order < 0) continue;
+
+			// sp comes from Sub Page
+			$spId = $subpage->post_name;
+
+			// Show the current page
+			$template_slug = get_page_template_slug ($subpage->ID);
+			if ($template_slug)
+			{
+				$template = locate_template ($template_slug);
+				if ($template)
+				{
+					$GLOBALS ['currentPage'] = &$subpage;
+					include ($template);
+				}
+			}
+			else
+			{
+				echo "<div class=\"container\" id=\"$spId\">";
+
+				// Si la subpágina tiene una imagen destacada, mostrarla
+				if (has_post_thumbnail ($subpage->ID))
+				{
+					echo '<div class="featured-image">' . get_the_post_thumbnail ($subpage->ID, 'full') . '</div>';
+				}
+
+				echo '<div class="content">';
+				echo apply_filters ('the_content', $subpage->post_content);
+				echo '</div></div>';
+			}
+		}
+		echo '</div>';
+	}
+}
+
+
+/**
+ * Function exclusive for template-team.php.
+ * Format the team member information.
+ *
+ * @param int $id
+ *        	Post ID of the team member
+ * @param string $postTitle
+ *        	Title of the post
+ * @param string $postName
+ *        	Name of the post
+ * @param string $content
+ *        	Content of the post
+ */
+function formatTeam ($id, $postTitle, $postName, $content)
+{
+	$teamMemberName = $postTitle;
+	$titulo = get_post_meta ($id, 'Titulo', true);
+	$colegiada = get_post_meta ($id, 'Colegiada', true);
+
+	// Prepare the vars
+	$titulo = ($titulo) ? esc_html ($titulo) : '';
+	$colegiada = ($colegiada) ? esc_html ($colegiada) : '';
+
+	echo '<div id="' . $postName . '" class="team-member">';
+
+	$imgUrl = get_the_post_thumbnail_url ($id, 'large');
+	if ($imgUrl)
+	{
+		$webpUrl = $imgUrl . '.webp';
+		echo '<picture><source srcset="' . esc_url ($webpUrl) . '" type="image/webp">';
+		echo '<img class="team-info-image" src="' . $imgUrl . '" alt="' . $teamMemberName . '" height="588">';
+		echo '</picture>';
+	}
+
+	$toggleId = 'toggleTeamInfo' . $postName;
+	echo '<input type="checkbox" id="' . $toggleId . '" />';
+	// team member sumary
+	{
+		echo '<label for="' . $toggleId . '" class="team-info-sumary"><content>';
+		echo "<h3>$teamMemberName</h3><p>" . $titulo . '</p><p>' . $colegiada . '</p>';
+		echo '</content></label>';
+	}
+
+	// Team member description
+	{
+		echo '<label for="' . $toggleId . '" class="team-info-details"><content>';
+
+		echo "<h3>$teamMemberName</h3><h4>" . $titulo . '</h4><h4>' . $colegiada . '</h4>';
+
+		echo apply_filters ('the_content', $content);
+		echo '</content></label>';
+	}
+
+	echo '</div>';
+}
+
+
+
+
