@@ -36,9 +36,6 @@ function getMnuAnchored ()
 		$retval [] = "<a href=\"$baseUrl/#{$page->post_name}\">" . esc_html ($page->post_title) . '</a>';
 	}
 
-	// Add manually contactar page
-	$retval [] = '<a href="' . get_permalink (get_option ('adaia_contact_page')) . '">Contactar</a>';
-
 	return $retval;
 }
 
