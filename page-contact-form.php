@@ -194,7 +194,7 @@ function enviarCorreo ($contents): bool
 		{
 			$mail->addAddress ($sendTo);
 		}
-		$mail->Subject = 'Nuevo mensaje del formulario de contacto';
+		$mail->Subject = 'Formulario de contacto - ' . ADAIA_CENTRO;
 		$mail->msgHTML ($contents);
 
 		// Enviamos el correo
