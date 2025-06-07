@@ -158,7 +158,13 @@ function checkRecaptcha ()
 }
 
 
-// Función para enviar el correo
+/**
+ * Envía un correo electrónico utilizando PHPMailer.
+ *
+ * @param string $contents
+ *        	El contenido del correo electrónico.
+ * @return bool|string Retorna true si el correo se envió correctamente, o un mensaje de error en caso contrario.
+ */
 function enviarCorreo ($contents): bool
 {
 	$mail = new PHPMailer (true);
@@ -209,10 +215,16 @@ function enviarCorreo ($contents): bool
 }
 
 
-// Función para mostrar el formulario
-function mostrarFormulario ()
+/**
+ * Primera Fase: Muestra el formulario de contacto sin CAPTCHA.
+ *
+ * @return string HTML del formulario de contacto.
+ */
+function showFormWithoutCaptcha ($actionUrl)
 {
-	$retVal = '<form id="adaiaContactForm" action="" method="post" onsubmit="return checkCaptchaAndSubmit(event)">
+
+	// Formulario sin recaptcha en primera fase
+	return '<form id="adaiaContactForm" action="' . $actionUrl . '" method="post">
         <label for="name">Tu nombre:</label>
         <input type="text" name="adaiaName" id="name" required><br><br>
 			
@@ -221,47 +233,52 @@ function mostrarFormulario ()
 			
         <label for="message">Tu mensaje:</label>
         <textarea name="adaiaMessage" id="message" rows="5" required></textarea><br><br>
-
-		<label for="emailBC" id="lbl_emailBC">Repite el Email:</label>
-        <input type="email" name="emailBC" id="emailBC">
 			
+        <label for="emailBC" id="lbl_emailBC">Repite el Email:</label>
+        <input type="email" name="emailBC" id="emailBC"><br><br>
 			
-		<label>
+        <label>
             <input type="checkbox" name="privacy_policy" required>
             Acepto la <a href="/legal/politica-de-privacidad/" target="_blank">política de privacidad</a>.
         </label><br><br>
 			
-			
-		<input type="hidden" id="g-recaptcha-response" name="g-recaptcha-response">
-        <button data-sitekey="' . RECAPTCHA_SITE_KEY . '" data-callback="onSubmit" data-action="submit" id="submitContactForm">Enviar</button>
+        <button id="submitContactForm">Enviar</button>
     </form>';
+}
+
+
+/**
+ * Segunda Fase: Muestra el formulario con CAPTCHA.
+ * Autoenvia el formulario una vez haya obtenido el cptcha
+ *
+ * @param string $actionUrl
+ *        	URL de acción del formulario.
+ * @return string HTML del formulario con CAPTCHA.
+ */
+function showFormWithCaptcha ($actionUrl)
+{
+	$retVal = '<p>Comprobando robots…</p>
+				<form id="captchaForm" action="' . $actionUrl . '" method="post">';
+	foreach ($_POST as $key => $value)
+	{
+		$val = htmlspecialchars ($value, ENT_QUOTES);
+		$retVal .= "<input type='hidden' name='{$key}' value='{$val}'>" . PHP_EOL;
+	}
+	$retVal .= '<input type="hidden" name="g-recaptcha-response" id="g-recaptcha-response" value="">
+                </form>';
+	$retVal .= '<script src="https://www.google.com/recaptcha/enterprise.js?render=' . RECAPTCHA_SITE_KEY . '" async defer></script>';
+
+	$retVal .= '<script>
+grecaptcha.enterprise.ready(function() {
+            grecaptcha.enterprise.execute("' . RECAPTCHA_SITE_KEY . '", {action: "SUBMIT_CONTACT_FORM"})
+                .then(function(token) {
+                    document.getElementById("g-recaptcha-response").value = token;
+                    document.getElementById("captchaForm").submit();
+                });
+        });
+</script>';
 
 	return $retVal;
-}
-
-
-function getRecaptchaScript ()
-{
-	$recapchaScript = '<script src="https://www.google.com/recaptcha/enterprise.js?render=' . RECAPTCHA_SITE_KEY . '" async defer></script>';
-	$recapchaScript .= "<script>
-function checkCaptchaAndSubmit(e) {
-	e.preventDefault();
-    grecaptcha.enterprise.ready(async () =>
-	{
-    	const token = await grecaptcha.enterprise.execute('" . RECAPTCHA_SITE_KEY . "', {action: 'SUBMIT_CONTACT_FORM'});
-		document.getElementById('g-recaptcha-response').value = token;
-    			
-		const form = document.getElementById('adaiaContactForm');
-		form.submit();
-    			
-    });
-	return false;
-}
-    			
-</script>";
-	// $recapchaScript .= '<script>document.getElementById(\'submitContactForm\').addEventListener(\'click\', checkCaptchaAndSubmit);</script>';
-
-	return $recapchaScript;
 }
 
 /*
@@ -274,12 +291,23 @@ function checkCaptchaAndSubmit(e) {
 $statusMessage = '';
 $statusClass = '';
 $showForm = true;
+$showCaptchaFrom = false;
+
+$actionUrl = esc_url (home_url ('/contacto/'));
+if (isset ($GLOBALS ['currentPage']))
+{
+	$actionUrl = esc_url (home_url ('/' . $GLOBALS ['currentPage']->post_name . '/'));
+}
 
 // Procesamiento del formulario
 if ($_SERVER ['REQUEST_METHOD'] === 'POST')
 {
-	// Validamos el CAPTCHA
-	if (! empty ($_POST ['emailBC']))
+	if (! isset ($_POST ['g-recaptcha-response']))
+	{
+		// Si estamos en POST y no hay campo g-recaptcha-response, pasamos a segunda fase
+		$showCaptchaFrom = true;
+	}
+	else if (! empty ($_POST ['emailBC']))
 	{
 		// Ha caido en el Honeypot
 		$statusMessage = 'Mensaje enviado correctamente';
@@ -288,6 +316,7 @@ if ($_SERVER ['REQUEST_METHOD'] === 'POST')
 	}
 	else if (empty ($_POST ['g-recaptcha-response']))
 	{
+		// Si hay campo g-recaptcha-response pero está vacío, no hemos pasado el captcha
 		$statusMessage = 'Por favor, verifica el CAPTCHA.';
 		$statusClass = 'sendError';
 	}
@@ -340,14 +369,22 @@ if ($_SERVER ['REQUEST_METHOD'] === 'POST')
 
 get_header ();
 
+// MAYBE: Mostrar imagen destacada
 // var_dump ($showForm);
 echo '<div class="container" id="contacto"><div class="content"><h2>' . get_the_title () . '</h2>';
 
 // Mostrar el contenido de la página desde el editor de WordPress
-while (have_posts ())
+if (isset ($GLOBALS ['currentPage']))
 {
-	the_post ();
-	the_content ();
+	echo apply_filters ('the_content', $GLOBALS ['currentPage']->post_content);
+}
+else
+{
+	while (have_posts ())
+	{
+		the_post ();
+		the_content ();
+	}
 }
 
 echo '<span class="lnk-form">';
@@ -357,10 +394,13 @@ if ($statusMessage !== '')
 	echo "<p class=\"$statusClass\">$statusMessage</p>";
 }
 
-if ($showForm)
+if ($showCaptchaFrom)
 {
-	echo getRecaptchaScript ();
-	echo mostrarFormulario ();
+	echo showFormWithCaptcha ($actionUrl);
+}
+else if ($showForm)
+{
+	echo showFormWithoutCaptcha ($actionUrl);
 }
 
 echo '</span></div></div>';
