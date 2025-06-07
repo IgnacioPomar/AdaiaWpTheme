@@ -271,7 +271,7 @@ function showFormWithCaptcha ($actionUrl)
 	}
 	$retVal .= '<input type="hidden" name="g-recaptcha-response" id="g-recaptcha-response" value="">
                 </form>';
-	$retVal .= '<script src="https://www.google.com/recaptcha/enterprise.js?render=' . RECAPTCHA_SITE_KEY . '" async defer></script>';
+	$retVal .= '<script src="https://www.google.com/recaptcha/enterprise.js?render=' . RECAPTCHA_SITE_KEY . '"></script>';
 
 	$retVal .= '<script>
 grecaptcha.enterprise.ready(function() {
