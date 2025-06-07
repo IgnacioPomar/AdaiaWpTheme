@@ -132,16 +132,45 @@ add_action ('admin_menu', function ()
 // Registrar el campo de configuración
 add_action ('admin_init', function ()
 {
-	register_setting ('settings_adaia', 'adaia_contact_page');
+	// Registramos las opciones del tema
+	register_setting ('settings_adaia', 'adaia_legal_page');
+	register_setting ('settings_adaia', 'adaia_privacy_page');
+	register_setting ('settings_adaia', 'adaia_cookie_page');
+
+	register_setting ('settings_adaia', 'adaia_main_phone', [ 'type' => 'string', 'sanitize_callback' => 'sanitize_text_field', 'default' => '']);
+	register_setting ('settings_adaia', 'adaia_email', [ 'type' => 'string', 'sanitize_callback' => 'sanitize_email', 'default' => '']);
 
 	add_settings_section ('section_adaia_footer', 'Footer Configuration', null, 'settings_adaia');
 
-	add_settings_field ('adaia_contact_page', 'Página de contacto', function ()
+	// añadimos los controladores del tema
+	add_settings_field ('adaia_legal_page', 'Página de aviso Legal', function ()
 	{
-		// $valor = esc_attr (get_option ('adaia_contact_page', 'contacto'));
-		// echo "<input type='text' name='adaia_contact_page' value='$valor' />";
-		$selected = get_option ('adaia_contact_page');
-		wp_dropdown_pages ([ 'name' => 'adaia_contact_page', 'selected' => $selected, 'show_option_none' => '— Selecciona una página —', 'option_none_value' => '']);
+		$selected = get_option ('adaia_legal_page');
+		wp_dropdown_pages ([ 'name' => 'adaia_legal_page', 'selected' => $selected, 'show_option_none' => '— Selecciona una página —', 'option_none_value' => '']);
+	}, 'settings_adaia', 'section_adaia_footer');
+
+	add_settings_field ('adaia_privacy_page', 'Página de politica de privacidad', function ()
+	{
+		$selected = get_option ('adaia_privacy_page');
+		wp_dropdown_pages ([ 'name' => 'adaia_privacy_page', 'selected' => $selected, 'show_option_none' => '— Selecciona una página —', 'option_none_value' => '']);
+	}, 'settings_adaia', 'section_adaia_footer');
+
+	add_settings_field ('adaia_cookie_page', 'Página de politica de cookies', function ()
+	{
+		$selected = get_option ('adaia_cookie_page');
+		wp_dropdown_pages ([ 'name' => 'adaia_cookie_page', 'selected' => $selected, 'show_option_none' => '— Selecciona una página —', 'option_none_value' => '']);
+	}, 'settings_adaia', 'section_adaia_footer');
+
+	add_settings_field ('adaia_main_phone', 'Teléfono de contacto', function ()
+	{
+		$val = get_option ('adaia_phone', '');
+		printf ('<input type="tel" id="adaia_main_phone" name="adaia_phone" value="%s" class="regular-text">', esc_attr ($val));
+	}, 'settings_adaia', 'section_adaia_footer');
+
+	add_settings_field ('adaia_email', 'Email de contacto', function ()
+	{
+		$val = get_option ('adaia_email', '');
+		printf ('<input type="email" id="adaia_email" name="adaia_email" value="%s" class="regular-text" >', esc_attr ($val));
 	}, 'settings_adaia', 'section_adaia_footer');
 });
 

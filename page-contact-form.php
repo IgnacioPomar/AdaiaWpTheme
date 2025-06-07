@@ -222,6 +222,11 @@ function enviarCorreo ($contents): bool
  */
 function showFormWithoutCaptcha ($actionUrl)
 {
+	$cookiesPageId = get_option ('adaia_cookie_page');
+	$cookiesUrl = get_permalink ($cookiesPageId);
+
+	$privacyPageId = get_option ('adaia_privacy_page');
+	$privacyUrl = get_permalink ($privacyPageId);
 
 	// Formulario sin recaptcha en primera fase
 	return '<form id="adaiaContactForm" action="' . $actionUrl . '" method="post">
@@ -239,7 +244,7 @@ function showFormWithoutCaptcha ($actionUrl)
 			
         <label>
             <input type="checkbox" name="privacy_policy" required>
-            Acepto la <a href="/legal/politica-de-privacidad/" target="_blank">política de privacidad</a>.
+            Acepto la <a href="' . $privacyUrl . '" target="_blank">política de privacidad</a> y las <a href="' . $cookiesUrl . '" target="_blank">cookies necesarias</a>.
         </label><br><br>
 			
         <button id="submitContactForm">Enviar</button>
