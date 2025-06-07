@@ -163,7 +163,7 @@ add_action ('admin_init', function ()
 
 	add_settings_field ('adaia_main_phone', 'Teléfono de contacto', function ()
 	{
-		$val = get_option ('adaia_phone', '');
+		$val = get_option ('adaia_main_phone', '');
 		printf ('<input type="tel" id="adaia_main_phone" name="adaia_phone" value="%s" class="regular-text">', esc_attr ($val));
 	}, 'settings_adaia', 'section_adaia_footer');
 
