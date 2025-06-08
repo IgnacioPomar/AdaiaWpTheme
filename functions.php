@@ -18,6 +18,7 @@ function add_custom_templates ($templates)
 	$templates ['page-contact-form.php'] = 'Formulario de contacto';
 	$templates ['template-team.php'] = 'Miembro del equipo';
 	$templates ['template-with-descendants.php'] = 'Por defecto con subpáginas';
+	$templates ['template-sibiling-menu.php'] = 'Con menú de hermanos';
 	return $templates;
 }
 add_filter ('theme_page_templates', 'add_custom_templates');
