@@ -18,7 +18,8 @@ function add_custom_templates ($templates)
 	$templates ['page-contact-form.php'] = 'Formulario de contacto';
 	$templates ['template-team.php'] = 'Miembro del equipo';
 	$templates ['template-with-descendants.php'] = 'Por defecto con subpáginas';
-	$templates ['template-sibiling-menu.php'] = 'Con menú de hermanos';
+	$templates ['template-idx-sibiling.php'] = 'Con índice de hermanos';
+	$templates ['template-idx-child.php'] = 'Con índice de hijos';
 	return $templates;
 }
 add_filter ('theme_page_templates', 'add_custom_templates');
@@ -56,6 +57,13 @@ function addIconFont ()
     </style>';
 }
 add_action ('wp_head', 'addIconFont');
+
+
+function habilitar_excerpt_para_paginas ()
+{
+	add_post_type_support ('page', 'excerpt');
+}
+add_action ('init', 'habilitar_excerpt_para_paginas');
 
 // ----------- Disable emojis in WordPress ------------
 add_action ('init', 'smartwp_disable_emojis');

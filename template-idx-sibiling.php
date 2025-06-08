@@ -7,7 +7,7 @@ if (! function_exists ('adaia_render_section_index'))
 	 * Renderiza un índice de secciones basado en las páginas hijas del post actual.
 	 * Muestra un título y una lista de enlaces a las páginas hijas ordenadas por menu_order.
 	 */
-	function adaia_render_section_index ()
+	function showHeaderWithSibilingsIdx ()
 	{
 		global $post;
 
@@ -71,7 +71,7 @@ $parent = $post->post_parent ? get_post ($post->post_parent) : $post;
 $wrapper_id = $parent->post_name . '-content';
 
 echo '<div class="container" id="' . esc_attr ($wrapper_id) . '"><div class="content">';
-adaia_render_section_index ();
+showHeaderWithSibilingsIdx ();
 
 echo '<div class="wp-block-group content">';
 while (have_posts ())
