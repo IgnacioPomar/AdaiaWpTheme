@@ -87,18 +87,6 @@ else
 			showHeaderWithChildsIdx ($pageID);
 			echo apply_filters ('the_content', get_the_content ());
 			echo '</div></div>';
-
-			// Si la subpágina tiene una imagen destacada, mostrarla
-			/*
-			 * if (has_post_thumbnail ($pageID))
-			 * {
-			 * echo '<div class="featured-image">' . get_the_post_thumbnail ($pageID, 'full') . '</div>';
-			 * }
-			 */
-
-			echo '<div class="content">';
-			echo apply_filters ('the_content', get_the_content ());
-			echo '</div></div>';
 		}
 	}
 	else
