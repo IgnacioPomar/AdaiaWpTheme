@@ -72,11 +72,13 @@ $wrapper_id = $parent->post_name . '-content';
 
 echo '<div class="container" id="' . esc_attr ($wrapper_id) . '"><div class="content">';
 adaia_render_section_index ();
+
+echo '<div class="wp-block-group content">';
 while (have_posts ())
 {
 	the_post ();
 	the_content ();
 }
-
-echo '</div></div>';
+echo '</div>'; // wp-block-group content
+echo '</div></div>'; // container content
 get_footer ();
