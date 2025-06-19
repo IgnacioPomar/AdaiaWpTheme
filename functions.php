@@ -30,12 +30,23 @@ function getMnuAnchored ()
 	$baseUrl = home_url ();
 	$subpages = get_pages (array ('parent' => 0, 'sort_column' => 'menu_order'));
 	$retval = array ();
+	$first = true;
+
 	foreach ($subpages as $page)
 	{
 		// Skip the -1 pages: in this theme ar "independent pages"
 		if ($page->menu_order > 100 || $page->menu_order < 0) continue;
 
-		$retval [] = "<a href=\"$baseUrl/#{$page->post_name}\">" . esc_html ($page->post_title) . '</a>';
+		if ($first)
+		{
+			// Primer elemento: enlace a '#'
+			$retval [] = "<a href=\"$baseUrl/#\">" . esc_html ($page->post_title) . '</a>';
+			$first = false;
+		}
+		else
+		{
+			$retval [] = "<a href=\"$baseUrl/#{$page->post_name}\">" . esc_html ($page->post_title) . '</a>';
+		}
 	}
 
 	return $retval;

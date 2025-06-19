@@ -2,7 +2,7 @@
  * Theme Name:        Adaia
  * Theme URI:         https://psicoadaia.com/
  * Description:       ADAIA  exclusive theme
- * Version:           1.0.9
+ * Version:           1.0.10
  * Author:            Ignacio Pomar Ballestero
  * License: © 2024 Beatriz Sanchez Ledesma. All rights reserved.
  * Tested up to:      6.5
@@ -190,8 +190,142 @@ label.mnuLbl {float: right; margin-right: 10px; font-size: 21px; color: #5f456b;
 	#mnuContainer nav {width:1170px;} 
 }
 
+
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 999;
+}
+
+main { padding-top: 55px;}
+@media (min-width: 768px) {main { padding-top: 109px;} }
+@media (min-width: 810px) {main { padding-top: 85px;} }
+@media (min-width: 992px){main { padding-top: 55px;}}
+
+
 /* ------------------------------------------------- */
-/*            Header: slider & acronyms              */
+/*            Header: Hero section                   */
+/* ------------------------------------------------- */
+
+:root {
+  --violeta: #52345d;
+  --teal:    #36d1c4;
+  --beige:   #f5f1eb;
+}
+
+/* ========================
+   HERO
+   ======================== */
+#hero {
+  background-color: var(--violeta);
+  color:            var(--beige);
+}
+
+#hero .hero-container {
+  display:        flex;
+  flex-direction: column;
+  justify-content: center;  /* centra verticalmente todo */
+  align-items:     center;
+  gap:             2rem;
+  max-width:       1200px;
+  margin:          0 auto;
+  padding:         4rem 2rem;
+}
+
+
+
+@media (min-width: 768px) {
+  #hero .hero-container {
+    flex-direction: row;
+    align-items:    stretch; /* que figure y content compartan altura */
+    gap:            4rem;
+  }
+}
+
+/* ---- contenido de texto ---- */
+#hero .hero-content {
+  flex:            1;
+  display:         flex;
+  flex-direction:  column;
+  justify-content: center; /* centra verticalmente el texto */
+  align-items:     center; /* centra horizontalmente (texto y botón) */
+  text-align:      center;
+  padding-top:     1rem;   /* un poco más de espacio arriba */
+}
+
+#hero .hero-content h1 {
+  font-size:   3rem;
+  line-height: 1.1;
+  margin:      0 0 1rem;
+  color: var(--teal);
+}
+
+#hero .hero-content h2 {
+  font-size:   1.75rem;
+  line-height: 1.3;
+  margin:      0 0 1.5rem;
+}
+
+#hero .hero-content p {
+  font-size:   1rem;
+  line-height: 1.6;
+  margin:      0 0 2rem;
+  text-align: left; /* justifica el texto */
+  color:     #C3BACC;
+}
+
+/* ---- botón ---- */
+#hero .contactBtn {
+  display:        inline-block;
+  background-color: var(--beige);
+  color:            var(--violeta);
+  text-decoration:  none;
+  font-weight:      600;
+  padding:          1rem 2rem;
+  border-radius:    2rem;
+  transition:       transform 0.2s ease, background-color 0.3s ease;
+}
+
+#hero .contactBtn:hover {
+  background-color: var(--teal);
+  transform:        translateY(-2px);
+}
+
+span.icon.adaia-whatsapp::after {
+    content: "\e61C";
+    vertical-align: middle;
+    font-family: icoadaia;
+    font-size: x-large;
+    margin-left: 10px;
+    color:#01e675;
+    
+}
+
+/* ---- figura / imagen ---- */
+#hero .hero-figure {  display:    none;}
+@media (min-width: 768px) {
+#hero .hero-figure {
+  flex:       1;
+  display:    flex;
+  align-items:    center;
+  justify-content: center;
+  min-height: 0; /* evita que la img infle el contenedor */
+}
+
+#hero .hero-img {
+  max-width:  100%;
+  max-height: 100%;
+  object-fit: contain;
+  display:    block;
+}
+}
+
+
+
+/* ------------------------------------------------- */
+/*            Header: acronyms              */
 /* ------------------------------------------------- */
 
 #acronyms {
@@ -221,34 +355,13 @@ label.mnuLbl {float: right; margin-right: 10px; font-size: 21px; color: #5f456b;
 
 
 
-#slider img {object-fit: cover; height: calc(100dvh - 35px); width: 100%; display: block;}
-#slider .slide {position: relative; width: 100%; display:block;}
-
-#slider .slide .txt {
-  position: absolute;
-  bottom: 0px;
-  width: 100%; 
-  text-align: center; 
-  color: white;
-  text-transform: uppercase;
-  background-color: rgba(93, 68, 105, 0.9);
-  height: 10%;
-  
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 15px;
-}
-
 @media (min-width: 768px) {
 	#acronyms .row { padding: 50px 0px;}
 	#acronyms .acronym-content {margin: 0px 5%;}
-	#slider .slide .txt {height: 20%;}
 }
 
 @media (min-width: 992px) {
     #acronyms .acronym-content {margin: 0px 5.5%;}
-    #slider .slide .txt {font-size: 30px;}
 }
 
 @media (min-width: 1200px) {
