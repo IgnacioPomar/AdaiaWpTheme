@@ -542,7 +542,7 @@ p.sendError {
 }
 #nuestras-sedes a {color: #FFF;}
 
-#nuestras-sedes h2:before {
+#nuestras-sedes h1:before {
     content: "\e61f";
     font-size: 70px;
     display: block;
@@ -557,12 +557,12 @@ p.sendError {
 }
 
 
-#nuestras-sedes h2 {text-align: center; font-size: 25px;}
+#nuestras-sedes h1 {text-align: center; font-size: 25px;}
 
 
 
 /* Contenedor principal */
-.adaia-centros {
+#nuestras-sedes ul {
   list-style: none !important;
   padding: 0;
   margin: 2rem 0;
@@ -570,7 +570,7 @@ p.sendError {
 }
 
 /* Cada bloque de sede */
-.adaia-centros li {
+#nuestras-sedes li {
   display: inline-block;
   vertical-align: top;
   margin: 1rem 4rem;
@@ -579,13 +579,13 @@ p.sendError {
   opacity: 0.95;
 }
 
-.adaia-centros li:hover {
+#nuestras-sedes li:hover {
   transform: scale(1.04);
   opacity: 1;
 }
 
 /* Iconos */
-.adaia-centros .icoadaia {
+#nuestras-sedes .icoadaia {
   font-family: "icoadaia";
   display: inline-block;
   font-size: 12rem;             /* tamaño base mayor */
@@ -597,35 +597,52 @@ p.sendError {
 }
 
 /* Efecto hover (ligero aumento y más opaco) */
-.adaia-centros li:hover .icoadaia {
+#nuestras-sedes li:hover .icoadaia {
   opacity: 1;
   transform: scale(1.08);
 }
 
 /* Información del centro */
-.adaia-centros .centro-info {
+#nuestras-sedes .centro-info {
   font-family: "Helvetica Neue", Arial, sans-serif;
   margin-top: 0.5rem;
 }
 
-.adaia-centros .centro-nombre {
+#nuestras-sedes .centro-nombre {
   font-weight: 600;
   font-size: 2rem;
   margin-bottom: 0.2rem;
  
 }
 
-.adaia-centros .centro-direccion {
-  color: #C3BACC;
-}
+#nuestras-sedes .centro-direccion { color: #C3BACC;}
 
 /* Ajuste responsive: se apilan si el ancho es pequeño */
 @media (max-width: 700px) {
-  .adaia-centros li {
+  #nuestras-sedes li {
     display: block;
     margin: 1.2rem auto;
   }
 }
+
+#nuestras-sedes .centro-boton {
+  margin-top: 0.6rem;
+  letter-spacing: 0.03em;
+  text-align: right;
+  color:#8E8496;
+}
+
+#nuestras-sedes li:hover .centro-boton { color:#FFF; }
+    
+
+#nuestras-sedes .centro-boton:after {
+    font-family: icoadaia;
+    content: "\e611";
+    font-size: 26px;
+    padding-left: 10px;
+    vertical-align: middle;
+}
+
 
 
 
