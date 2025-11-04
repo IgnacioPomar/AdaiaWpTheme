@@ -40,12 +40,12 @@ function getMnuAnchored ()
 		if ($first)
 		{
 			// Primer elemento: enlace a '#'
-			$retval [] = "<a href=\"$baseUrl/#\">" . esc_html ($page->post_title) . '</a>';
+			$retval [] = [ "$baseUrl/#", esc_html ($page->post_title)];
 			$first = false;
 		}
 		else
 		{
-			$retval [] = "<a href=\"$baseUrl/#{$page->post_name}\">" . esc_html ($page->post_title) . '</a>';
+			$retval [] = [ "$baseUrl/#{$page->post_name}", esc_html ($page->post_title)];
 		}
 	}
 

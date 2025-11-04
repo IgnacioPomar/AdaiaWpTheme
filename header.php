@@ -31,7 +31,7 @@
 
 				foreach ($opcs as $opc)
 				{
-					echo "<li>$opc</li>";
+					echo '<li><a href="' . $opc [0] . '" onclick="document.getElementById(\'menu-toggle\').checked = false; return true;">' . $opc [1] . '</a></li>';
 				}
 				echo '</ul>';
 			}
