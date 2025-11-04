@@ -53,21 +53,25 @@ function getMnuAnchored ()
 }
 
 
-function addIconFont ()
+function addThemeFonts ()
 {
 	echo '<style>
         @font-face {
             font-family: "icoadaia";
-            src: url("' . get_template_directory_uri () . '/assets/fonts/icoadaia_v3.woff2") format("woff2"),
-                 url("' . get_template_directory_uri () . '/assets/fonts/icoadaia_v3.woff") format("woff"),
-                 url("' . get_template_directory_uri () . '/assets/fonts/icoadaia_v3.ttf") format("truetype");
+            src: url("' . get_template_directory_uri () . '/assets/fonts/icoadaia_v5.woff2") format("woff2"),
+                 url("' . get_template_directory_uri () . '/assets/fonts/icoadaia_v5.woff") format("woff"),
+                 url("' . get_template_directory_uri () . '/assets/fonts/icoadaia_v5.ttf") format("truetype");
             font-weight: normal;
             font-style: normal;
             font-display: block;
         }
-    </style>';
+    </style>
+
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet">';
 }
-add_action ('wp_head', 'addIconFont');
+add_action ('wp_head', 'addThemeFonts');
 
 
 function habilitar_excerpt_para_paginas ()
