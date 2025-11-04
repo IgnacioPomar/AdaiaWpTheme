@@ -190,6 +190,19 @@ label.mnuLbl {float: right; margin-right: 10px; font-size: 21px; color: #5f456b;
 	#mnuContainer nav {width:1170px;} 
 }
 
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 999;
+}
+
+main { padding-top: 55px;}
+@media (min-width: 768px) {main { padding-top: 109px;} }
+@media (min-width: 810px) {main { padding-top: 85px;} }
+@media (min-width: 992px){main { padding-top: 55px;}}
+
 /* ------------------------------------------------- */
 /*            Header: slider & acronyms              */
 /* ------------------------------------------------- */
