@@ -15,6 +15,13 @@
 /* ------------------------------------------------- */
 
 
+:root {
+  --violeta: #52345d;
+  --teal:    #36d1c4;
+  --beige:   #f5f1eb;
+}
+
+
 html {
     font-family: Nunito;
     -webkit-text-size-adjust: 100%;
@@ -525,6 +532,34 @@ p.sendError {
     #contacto .lnk-form {width: 68%; }
     #contacto .lnk-form {padding: 0px;text-align: left;}
 }
+
+/* ---- botón ---- */
+#contacto .contactBtn {
+  display:        inline-block;
+  background-color: var(--beige);
+  color:            var(--violeta);
+  text-decoration:  none;
+  font-weight:      600;
+  padding:          1rem 2rem;
+  border-radius:    2rem;
+  transition:       transform 0.2s ease, background-color 0.3s ease;
+}
+
+#contacto .contactBtn:hover {
+  background-color: var(--teal);
+  transform:        translateY(-2px);
+}
+
+#contacto span.icon.adaia-whatsapp::after {
+    content: "\e61C";
+    vertical-align: middle;
+    font-family: icoadaia;
+    font-size: x-large;
+    margin-left: 10px;
+    color:#01e675;
+    
+}
+
 
 
 /* ------------------------------------------------- */

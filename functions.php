@@ -55,12 +55,20 @@ function getMnuAnchored ()
 
 function addThemeFonts ()
 {
+	$theme = wp_get_theme ();
+	$ver = $theme->get ('Version');
+	$base_url = get_template_directory_uri () . '/assets/fonts/';
+
+	$woff2 = add_query_arg ('ver', $ver, $base_url . 'icoadaia.woff2');
+	$woff = add_query_arg ('ver', $ver, $base_url . 'icoadaia.woff');
+	$ttf = add_query_arg ('ver', $ver, $base_url . 'icoadaia.ttf');
+
 	echo '<style>
         @font-face {
             font-family: "icoadaia";
-            src: url("' . get_template_directory_uri () . '/assets/fonts/icoadaia_v5.woff2") format("woff2"),
-                 url("' . get_template_directory_uri () . '/assets/fonts/icoadaia_v5.woff") format("woff"),
-                 url("' . get_template_directory_uri () . '/assets/fonts/icoadaia_v5.ttf") format("truetype");
+            src: url("' . esc_url ($woff2) . '") format("woff2"),
+                 url("' . esc_url ($woff) . '") format("woff"),
+                 url("' . esc_url ($ttf) . '") format("truetype");
             font-weight: normal;
             font-style: normal;
             font-display: block;
