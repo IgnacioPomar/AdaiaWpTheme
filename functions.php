@@ -279,6 +279,28 @@ function showSubpages (&$subpages, $class = "")
 
 
 /**
+ * Get meta value with fallback to another meta key if empty
+ *
+ * @param int $postId
+ *        	Post ID
+ * @param string $metaKey
+ *        	Meta key to get
+ * @param string $fallbackMetaKey
+ *        	Fallback meta key to get if the first is empty
+ * @return mixed Meta value
+ */
+function getMetaWithFallback ($postId, $metaKey, $fallbackMetaKey)
+{
+	$val = get_post_meta ($postId, $metaKey, true);
+	if (empty ($val))
+	{
+		$val = get_post_meta ($postId, $fallbackMetaKey, true);
+	}
+	return $val;
+}
+
+
+/**
  * Function exclusive for template-team.php.
  * Format the team member information.
  *
@@ -294,8 +316,13 @@ function showSubpages (&$subpages, $class = "")
 function formatTeam ($id, $postTitle, $postName, $content)
 {
 	$teamMemberName = $postTitle;
-	$titulo = get_post_meta ($id, 'Titulo', true);
-	$colegiada = get_post_meta ($id, 'Colegiada', true);
+	// $titulo = get_post_meta ($id, '_team_titulo', true);
+	// $colegiada = get_post_meta ($id, '_team_colegiada', true);
+
+	// Transitional: use new meta with fallback to old meta
+	$titulo = getMetaWithFallback ($id, '_team_titulo', 'Titulo');
+	$colegiada = getMetaWithFallback ($id, '_team_colegiada', 'Colegiada');
+	// End transitional
 
 	// Prepare the vars
 	$titulo = ($titulo) ? esc_html ($titulo) : '';
@@ -349,29 +376,23 @@ add_action ('add_meta_boxes', function ()
                  data-target-template="template-team.php"
                  data-current-template="<?php
 
-echo esc_attr ($tpl);
+		echo esc_attr ($tpl);
 		?>">
                 <?php
 
-wp_nonce_field ('team_member_fields_nonce_action', 'team_member_fields_nonce');
+		wp_nonce_field ('team_member_fields_nonce_action', 'team_member_fields_nonce');
 		?>
 
                 <p>
                     <label for="team_colegiada"><strong>Colegiada</strong></label><br>
                     <input type="text" id="team_colegiada" name="team_colegiada" class="widefat"
-                           value="<?php
-
-echo esc_attr (get_post_meta ($post->ID, '_team_colegiada', true));
-		?>">
+                           value="<?=esc_attr (getMetaWithFallback ($post->ID, '_team_colegiada', 'Colegiada'));?>">
                 </p>
 
                 <p>
                     <label for="team_titulo"><strong>Título</strong></label><br>
                     <input type="text" id="team_titulo" name="team_titulo" class="widefat"
-                           value="<?php
-
-echo esc_attr (get_post_meta ($post->ID, '_team_titulo', true));
-		?>">
+                           value="<?=esc_attr (getMetaWithFallback ($post->ID, '_team_titulo', 'Titulo'));?>">
                 </p>
 
                 <p class="description">
@@ -403,6 +424,10 @@ add_action ('save_post_page', function ($post_id, $post, $update)
 
 	update_post_meta ($post_id, '_team_colegiada', sanitize_text_field ($_POST ['team_colegiada'] ?? ''));
 	update_post_meta ($post_id, '_team_titulo', sanitize_text_field ($_POST ['team_titulo'] ?? ''));
+
+	// Delete old meta to keep clean
+	delete_post_meta ($post_id, 'Colegiada');
+	delete_post_meta ($post_id, 'Titulo');
 }, 10, 3);
 
 // === Mostrar/ocultar en vivo (editor clásico) ===
