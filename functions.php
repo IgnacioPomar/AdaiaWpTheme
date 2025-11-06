@@ -334,6 +334,122 @@ function formatTeam ($id, $postTitle, $postName, $content)
 	echo '</div>';
 }
 
+// --------------------------------------------------------------------------------------------------------------
+// ----------------------- Campos personalizados al usar equipo -------------------------------------------------
+// --------------------------------------------------------------------------------------------------------------
+
+// === Metabox para plantilla "Miembro del equipo" (template-team.php) ===
+add_action ('add_meta_boxes', function ()
+{
+	add_meta_box ('team_member_fields', 'Datos del miembro del equipo', function ($post)
+	{
+		$tpl = get_page_template_slug ($post) ?: '';
+		?>
+            <div id="team-meta-wrapper"
+                 data-target-template="template-team.php"
+                 data-current-template="<?php
+
+echo esc_attr ($tpl);
+		?>">
+                <?php
+
+wp_nonce_field ('team_member_fields_nonce_action', 'team_member_fields_nonce');
+		?>
+
+                <p>
+                    <label for="team_colegiada"><strong>Colegiada</strong></label><br>
+                    <input type="text" id="team_colegiada" name="team_colegiada" class="widefat"
+                           value="<?php
+
+echo esc_attr (get_post_meta ($post->ID, '_team_colegiada', true));
+		?>">
+                </p>
+
+                <p>
+                    <label for="team_titulo"><strong>Título</strong></label><br>
+                    <input type="text" id="team_titulo" name="team_titulo" class="widefat"
+                           value="<?php
+
+echo esc_attr (get_post_meta ($post->ID, '_team_titulo', true));
+		?>">
+                </p>
+
+                <p class="description">
+                    Estos campos solo aplican si la página usa la plantilla <code>Miembro del equipo</code>.
+                </p>
+            </div>
+            <?php
+	}, 'page', 'side', 'default');
+});
+
+// === Guardado seguro (solo si la plantilla es template-team.php) ===
+add_action ('save_post_page', function ($post_id, $post, $update)
+{
+	if (! isset ($_POST ['team_member_fields_nonce']) || ! wp_verify_nonce ($_POST ['team_member_fields_nonce'], 'team_member_fields_nonce_action'))
+	{
+		return;
+	}
+	if (defined ('DOING_AUTOSAVE') && DOING_AUTOSAVE) return;
+	if (! current_user_can ('edit_post', $post_id)) return;
+
+	$tpl = get_page_template_slug ($post_id) ?: '';
+	if ($tpl !== 'template-team.php')
+	{
+		// Si cambian a otra plantilla, limpias para no dejar "basura"
+		delete_post_meta ($post_id, '_team_colegiada');
+		delete_post_meta ($post_id, '_team_titulo');
+		return;
+	}
+
+	update_post_meta ($post_id, '_team_colegiada', sanitize_text_field ($_POST ['team_colegiada'] ?? ''));
+	update_post_meta ($post_id, '_team_titulo', sanitize_text_field ($_POST ['team_titulo'] ?? ''));
+}, 10, 3);
+
+// === Mostrar/ocultar en vivo (editor clásico) ===
+add_action ('admin_enqueue_scripts', function ($hook)
+{
+	if ($hook !== 'post.php' && $hook !== 'post-new.php') return;
+	wp_add_inline_script ('jquery-core', <<<JS
+	jQuery(function($){
+	  function toggleTeamBoxClassic(){
+	    var target = 'template-team.php';
+	    var sel = $('#page_template').val();
+	    var visible = (sel === target);
+	    $('#team_member_fields').toggle(!!visible);
+	  }
+	  // Inicial y cambios
+	  toggleTeamBoxClassic();
+	  $(document).on('change', '#page_template', toggleTeamBoxClassic);
+	});
+	JS);
+});
+
+// === Mostrar/ocultar en vivo (Gutenberg) ===
+add_action ('enqueue_block_editor_assets', function ()
+{
+	// Script inline pequeño que observa el atributo 'template' del post
+	$js = <<<JS
+	( function(wp){
+	  function toggle() {
+	    var target = 'template-team.php';
+	    var panel = document.getElementById('team_member_fields');
+	    if (!panel) return;
+	    var sel = wp.data.select('core/editor').getEditedPostAttribute('template');
+	    panel.style.display = (sel === target) ? '' : 'none';
+	  }
+	  // Inicial y suscripción a cambios en el editor
+	  wp.domReady(toggle);
+	  var unsubscribe = wp.data.subscribe(function(){
+	    toggle();
+	  });
+	} )(window.wp);
+	JS;
+	wp_add_inline_script ('wp-data', $js);
+});
 
 
 
+//--------------------------------------------------------------------------------------------------------------
+//----------------------- Campos personalizados al usar equipo - END -------------------------------------------
+//--------------------------------------------------------------------------------------------------------------
+	
