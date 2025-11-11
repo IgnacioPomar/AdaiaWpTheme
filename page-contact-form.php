@@ -54,7 +54,7 @@ use Google\Cloud\RecaptchaEnterprise\V1\TokenProperties\InvalidReason;
  *        
  *        
  */
-function saveToFile ($content)
+function saveToFile ($content, $prefix = ''): string|false
 {
 
 	// Obtén el año y el mes actual
@@ -76,6 +76,11 @@ function saveToFile ($content)
 	// Genera el nombre del archivo basado en la fecha y hora actual
 	$fileName = date ("c") . ".txt"; // ISO 8601 (incluye fecha, hora y zona horaria)
 	$fileName = str_replace ([ ':', '/'], '-', $fileName); // Sustituir caracteres no válidos en nombres de archivo
+
+	if ($prefix !== '')
+	{
+		$fileName = $prefix . '_' . $fileName;
+	}
 
 	// Construye la ruta completa del archivo
 	$filePath = "$directory/$fileName";
@@ -371,7 +376,7 @@ if ($_SERVER ['REQUEST_METHOD'] === 'POST')
 			$statusMessage = 'Error de verificación del CAPTCHA.';
 			$statusClass = 'sendError';
 			$showForm = false;
-			saveToFile ($body);
+			saveToFile ($body, 'not_sent');
 		}
 	}
 }
