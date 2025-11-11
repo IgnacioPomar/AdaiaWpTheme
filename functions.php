@@ -345,12 +345,7 @@ function formatTeam ($id, $postTitle, $postName, $content)
 	// team member sumary
 	{
 		echo '<label for="' . $toggleId . '" class="team-info-sumary"><content>';
-		echo "<h3>$teamMemberName</h3><p>" . $titulo . '</p>';
-		if ($tituloExtra)
-		{
-			echo '<p>' . esc_html ($tituloExtra) . '</p>';
-		}
-		echo '<p>' . $colegiada . '</p>';
+		echo "<h3>$teamMemberName</h3><p>" . $titulo . '</p><p>' . $colegiada . '</p>';
 		echo '</content></label>';
 	}
 
@@ -358,7 +353,12 @@ function formatTeam ($id, $postTitle, $postName, $content)
 	{
 		echo '<label for="' . $toggleId . '" class="team-info-details"><content>';
 
-		echo "<h3>$teamMemberName</h3><h4>" . $titulo . '</h4><h4>' . $colegiada . '</h4>';
+		echo "<h3>$teamMemberName</h3><h4>" . $titulo . '</h4>';
+		if ($tituloExtra)
+		{
+			echo '<h4>' . esc_html ($tituloExtra) . '</h4>';
+		}
+		echo '<h4>' . $colegiada . '</h4>';
 
 		echo apply_filters ('the_content', $content);
 		echo '</content></label>';
