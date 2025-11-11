@@ -2,9 +2,13 @@
 /*
  * Template Name: Formulario Fijo para Adaia
  */
+if (! defined ('RECAPTCHA_SITE_KEY'))
+{
+	// Old way: include cfg.php only if not defined
+	require 'cfg.php';
+}
 
-// Incluir ficherod e configuración y librerías
-require 'cfg.php';
+// Carga las dependencias con Composer
 require 'vendor/autoload.php';
 
 use PHPMailer\PHPMailer\PHPMailer;
