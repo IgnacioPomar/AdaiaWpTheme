@@ -322,6 +322,7 @@ function formatTeam ($id, $postTitle, $postName, $content)
 	// Transitional: use new meta with fallback to old meta
 	$titulo = getMetaWithFallback ($id, '_team_titulo', 'Titulo');
 	$colegiada = getMetaWithFallback ($id, '_team_colegiada', 'Colegiada');
+	$tituloExtra = get_post_meta ($id, '_team_titulo_extra', true);
 	// End transitional
 
 	// Prepare the vars
@@ -344,7 +345,12 @@ function formatTeam ($id, $postTitle, $postName, $content)
 	// team member sumary
 	{
 		echo '<label for="' . $toggleId . '" class="team-info-sumary"><content>';
-		echo "<h3>$teamMemberName</h3><p>" . $titulo . '</p><p>' . $colegiada . '</p>';
+		echo "<h3>$teamMemberName</h3><p>" . $titulo . '</p>';
+		if ($tituloExtra)
+		{
+			echo '<p>' . esc_html ($tituloExtra) . '</p>';
+		}
+		echo '<p>' . $colegiada . '</p>';
 		echo '</content></label>';
 	}
 
@@ -372,14 +378,8 @@ add_action ('add_meta_boxes', function ()
 	{
 		$tpl = get_page_template_slug ($post) ?: '';
 		?>
-            <div id="team-meta-wrapper"
-                 data-target-template="template-team.php"
-                 data-current-template="<?php
-
-		echo esc_attr ($tpl);
-		?>">
-                <?php
-
+            <div id="team-meta-wrapper" data-target-template="template-team.php" data-current-template="<?=esc_attr ($tpl);?>">
+        <?php
 		wp_nonce_field ('team_member_fields_nonce_action', 'team_member_fields_nonce');
 		?>
 
@@ -394,6 +394,10 @@ add_action ('add_meta_boxes', function ()
                     <input type="text" id="team_titulo" name="team_titulo" class="widefat"
                            value="<?=esc_attr (getMetaWithFallback ($post->ID, '_team_titulo', 'Titulo'));?>">
                 </p>
+                <p>
+                	<label><strong>Titulación adicional</strong> (opcional)</label><br>
+                	<input type="text" class="widefat" name="team_titulo_extra" value="<?=esc_attr (get_post_meta ($post->ID, '_team_titulo_extra', true));?>">
+            	</p>
 
                 <p class="description">
                     Estos campos solo aplican si la página usa la plantilla <code>Miembro del equipo</code>.
@@ -419,11 +423,13 @@ add_action ('save_post_page', function ($post_id, $post, $update)
 		// Si cambian a otra plantilla, limpias para no dejar "basura"
 		delete_post_meta ($post_id, '_team_colegiada');
 		delete_post_meta ($post_id, '_team_titulo');
+		delete_post_meta ($post_id, '_team_titulo_extra');
 		return;
 	}
 
 	update_post_meta ($post_id, '_team_colegiada', sanitize_text_field ($_POST ['team_colegiada'] ?? ''));
 	update_post_meta ($post_id, '_team_titulo', sanitize_text_field ($_POST ['team_titulo'] ?? ''));
+	update_post_meta ($post_id, '_team_titulo_extra', sanitize_text_field ($_POST ['team_titulo_extra'] ?? ''));
 
 	// Delete old meta to keep clean
 	delete_post_meta ($post_id, 'Colegiada');
