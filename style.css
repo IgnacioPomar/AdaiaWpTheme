@@ -2,7 +2,7 @@
  * Theme Name:        Adaia
  * Theme URI:         https://psicoadaia.com/
  * Description:       ADAIA  exclusive theme
- * Version:           1.1.0
+ * Version:           1.1.1
  * Author:            Ignacio Pomar Ballestero
  * License: © 2024 Beatriz Sanchez Ledesma. All rights reserved.
  * Tested up to:      6.5
@@ -1080,128 +1080,153 @@ p.sendError {
 /* ------------------------------------------------- */
 /*           Estilos de muestro equipo               */
 /* ------------------------------------------------- */
-
+/* ===== Sección / títulos =================================================== */
 #nuestro-equipo {
-	background-color: #5d4469;
-    width: 100%;
-    color: #FFF;
-    padding-top: 50px;
-    padding-bottom: 50px;
+  background-color: #5d4469;
+  width: 100%;
+  color: #FFF;
+  padding-top: 50px;
+  padding-bottom: 50px;
 }
 
 #nuestro-equipo h1:before {
-    content: "\e608";
-    /* font-family: icoadaia; */
-    font-size: 70px;
-    display: block;
-    font-family: icoadaia;
-    font-style: normal;
-    font-weight: 400;
-    font-variant: normal;
-    text-transform: none;
-    line-height: 1;
-    margin-bottom: 15px;
-    -webkit-font-smoothing: antialiased;
+  content: "\e608";
+  font-size: 70px;
+  display: block;
+  font-family: icoadaia;
+  font-style: normal;
+  font-weight: 400;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  margin-bottom: 15px;
+  -webkit-font-smoothing: antialiased;
 }
 
+.subpages.nuestro-equipo { background-color: #FAF7F2; }
 
-
-.subpages.nuestro-equipo {background-color: #FAF7F2;}
-
+/* ===== Items del equipo ===================================================== */
 img.team-info-image {
-	padding-top: 30px;
-	display: block;
+  padding-top: 30px;
+  display: block;
 }
 
-.team-member      {
-	position: relative;
-    display: inline-block;
-    color: #FFF;
-    width: 100%;
-    height: 610px;
-}
-.team-member input {display: none;}
-
-.team-member ul li {padding:0px;}
-
-
-.team-info-sumary, .team-info-details {
-	cursor: pointer;
-	/* transition: opacity 0.3s ease-in-out; */ 
-	background-color: #5d4469e6;
-	position: absolute;
-	bottom: 0;
-    left: 0;
-    width: 100%;
-    
-    margin-top: 15px;
-    text-align: justify;
-    padding: 0px 20px;
+/* Contenedor del miembro:
+   -> Grid para solapar foto y panel morado
+   -> SIN height fija; con min-height opcional para mantener proporción */
+.team-member {
+  position: relative;
+  display: grid;         /* clave para solapar */
+  width: 100%;
+  color: #FFF;
+  min-height: 610px;     /* conserva el “alto mínimo” del diseño */
+  /* height: 610px;  <-- eliminado a propósito */
 }
 
-.team-member content {width: 100%;}
+.team-member input { display: none; }
+.team-member ul li { padding: 0; }
 
-.team-info-sumary {	display: block;}
-.team-info-details { display: none; height: 100%; font-size: 14px;}
+/* Foto: misma celda del grid que los paneles, al fondo */
+.team-member picture {
+  grid-area: 1 / 1;          /* solapado */
+  align-self: end;            /* apoyada abajo */
+  justify-self: center;
+  z-index: 1;                 /* por detrás del panel */
+}
 
-/* Mostrar el segundo div y ocultar el primero cuando el input está checked */
+/* Panel morado (resumen + detalle) */
+.team-info-sumary,
+.team-info-details {
+  cursor: pointer;
+  background-color: #5d4469e6;
+  position: relative;         /* para el :after */
+  grid-area: 1 / 1;           /* misma celda: solapa con la foto */
+  width: 100%;
+  text-align: justify;
+  padding: 20px;
+  margin: 0;
+  z-index: 2;                 /* por encima de la foto */
+}
+
+/* Estado cerrado: banda pegada abajo */
+.team-info-sumary { 
+  display: block;
+  align-self: end;            /* pegado al borde inferior */
+}
+
+/* Estado abierto: que crezca y empuje el contenedor */
+.team-info-details {
+  display: none;
+  align-self: stretch;        /* crece verticalmente */
+  font-size: 14px;
+}
+
+/* --- Base: evita desbordes --- */
+.team-member picture,
+.team-member content {
+  width: 500px;
+  max-width: 100%;      /* que nunca exceda su columna */
+}
+
+/* Toggle con el input */
 .team-member input:checked ~ .team-info-sumary  { display: none;  }
 .team-member input:checked ~ .team-info-details { display: block; }
 
-
-	
-.team-info-sumary content:after, .team-info-details:after {
-    font-family: icoadaia;   
-    position: absolute;
-    bottom: 16px;
-    font-size: 25px;
-    right: 13px;
-    color: #8E8496;
+/* Iconos abrir/cerrar (igual que tenías) */
+.team-info-sumary content:after,
+.team-info-details:after {
+  font-family: icoadaia;
+  position: absolute;
+  bottom: 16px;
+  right: 13px;
+  font-size: 25px;
+  color: #8E8496;
 }
+.team-info-sumary content:after { content: "\e60f"; }
+.team-info-details:after       { content: "\e616"; }
 
-.team-info-sumary content:after {content: "\e60f";}
-.team-info-details:after {content: "\e616";}
+/* Asegura ancho de content */
+.team-member content { width: 100%; }
 
-.team-member picture { position: absolute; bottom: 0px; }
-
+/* ===== Responsive =========================================================== */
 @media (min-width: 768px) {
-	img.team-info-image {display: block; padding-top: 30px;}
-	.team-member picture,.team-member content 	{
-		display: block;
-    	width: 500px;
-    	margin-left: auto;
-    	margin-right: auto;
-    	/*position: relative;*/
-    }
-	
-	
-}
+  img.team-info-image { display: block; padding-top: 30px; }
 
-@media (max-width: 991px) {
-	.team-member picture {
-    	left: 0;
-    	right: 0;
-    	margin: 0 auto;
-    }
+  /* Centrado y ancho máximo de contenido/foto */
+  .team-member picture,
+  .team-member content {
+    display: block;
+    width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+  }
 }
 
 
+/* Dos columnas en desktop; SIN posiciones absolutas ni floats
+   que rompan el solapado del grid. */
+@media (min-width: 1096px) {
+  .team-member { width: 50%; display: inline-grid; }
+  .team-member content, .team-member picture { width: 500px; min-height: 140px; display: inline-block; position: relative; }
+  
 
-@media (min-width: 992px) {
-	/*img.team-info-image {}*/
-	.team-member content { width: 500px;min-height: 140px;}
-    .team-member      {  width: 50%;}
-    	
-	.subpages.nuestro-equipo .team-member content {float:left;}
-	
-	.subpages.nuestro-equipo .team-member:first-child picture,
-	.subpages.nuestro-equipo .team-member:first-child content,
-	.subpages.nuestro-equipo .team-member:nth-child(2n+1) content,
-	.subpages.nuestro-equipo .team-member:nth-child(2n+1)  picture {float:right;}
-	
-	
-	.team-member:nth-child(2n+1) picture {right: 0px;}
-	.team-member:nth-child(2n) picture {left: 0px;}
+  /* Pegamos a izquerda o derecha según corresponda */
+  .team-member:nth-child(2n+1) picture{margin-right: unset;}
+  .team-member:nth-child(2n) picture{margin-left: unset;}
+  
+  .team-member input:checked ~ .team-info-details content {display: inline-block; }
+  .team-member:nth-child(2n) .team-info-details:after {display: inline-block; position: revert;}
+  
+  .team-member:nth-child(2n+1) .team-info-sumary,
+  .team-member:nth-child(2n+1) .team-info-details { text-align: right;}
+  .team-member:nth-child(2n+1) .team-info-sumary content,
+  .team-member:nth-child(2n+1) .team-info-details content   { text-align: justify; }
 }
 
-
+/* --- Móvil/pequeñas (<996): una por fila, centradas --- */
+@media (max-width: 1095px) {
+  .team-member { 
+    width: 100%;
+    justify-items: center;
+  }
+}
