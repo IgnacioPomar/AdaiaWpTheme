@@ -2,7 +2,7 @@
  * Theme Name:        Adaia
  * Theme URI:         https://psicoadaia.com/
  * Description:       ADAIA  exclusive theme
- * Version:           1.1.1
+ * Version:           1.1.2
  * Author:            Ignacio Pomar Ballestero
  * License: © 2024 Beatriz Sanchez Ledesma. All rights reserved.
  * Tested up to:      6.5
@@ -1143,7 +1143,7 @@ img.team-info-image {
   grid-area: 1 / 1;           /* misma celda: solapa con la foto */
   width: 100%;
   text-align: justify;
-  padding: 20px;
+  padding: 5px;
   margin: 0;
   z-index: 2;                 /* por encima de la foto */
 }
@@ -1164,7 +1164,6 @@ img.team-info-image {
 /* --- Base: evita desbordes --- */
 .team-member picture,
 .team-member content {
-  width: 500px;
   max-width: 100%;      /* que nunca exceda su columna */
 }
 
@@ -1189,8 +1188,11 @@ img.team-info-image {
 .team-member content { width: 100%; }
 
 /* ===== Responsive =========================================================== */
-@media (min-width: 768px) {
+@media (min-width: 541px) {
+	/* 540px: por tamaño imagen + paddinding texto */
   img.team-info-image { display: block; padding-top: 30px; }
+  
+  .team-info-sumary,.team-info-details { padding: 20px;}
 
   /* Centrado y ancho máximo de contenido/foto */
   .team-member picture,
