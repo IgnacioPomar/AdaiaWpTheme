@@ -57,9 +57,10 @@ h1, h2, h3, h4, h5 {
 
 
 a {color: #428bca;text-decoration: none;}
-ul {padding: 0px;}
 h1 {text-align: center; font-size: 25px;}
 
+ul {padding: 0px;}
+@media (max-width: 540px) {ul { padding-left: 20px;}}
 
 details { margin-bottom: 8px; }
 summary { font-weight: bold;  color: #5f456b;}
