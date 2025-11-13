@@ -23,7 +23,7 @@ const slides = [
 	<div class="slide">
 		<picture>
 			<source srcset="<?=$themeBaseUri?>/assets/img/sld01-sientes.jpg.webp" type="image/webp">
-			<img src="<?=$themeBaseUri?>/assets/img/sld01-sientes.jpg" >
+			<img src="<?=$themeBaseUri?>/assets/img/sld01-sientes.jpg" alt="">
 		</picture>
 		<span class="txt">Comprende lo que sientes</span>
 	</div>

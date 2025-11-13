@@ -12,7 +12,7 @@
         	<label for="menu-toggle" class="mnuLbl">☰</label>
             <input type="checkbox" id="menu-toggle" class="menu-toggle" />
         	<div id="brand">
-        		<a href="<?=home_url ();?>"><span class="adaiaLogo"></span></a>
+        		<a href="<?=home_url ();?>" aria-label="<?=esc_attr (get_bloginfo ('name'));?>"><span class="adaiaLogo" aria-hidden="true"></span></a>
         	</div>
             <nav>
 			<?php
